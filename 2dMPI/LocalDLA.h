@@ -34,10 +34,21 @@ public:
         lower = min(corner1, corner2);
         upper = min(corner1, corner2);  
         }
+
+    set_domain(Vec2D corner1, Vec2D corner2){
+        lower = min(corner1, corner2);
+        upper = min(corner1, corner2); 
+    }
     
     // update is the step that updates the each processor's domain's diffusion and cluster formation
     // update contains walk, particle attachment and communication stages   
     update();
+
+    // migrate is the communication process in which every processor have already get the new 
+    migrate();
+
+    //
+    report_domain();
 
 
 

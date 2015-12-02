@@ -148,19 +148,17 @@ void GlobalDLA::domain_decompose(){
     int l = floor(sqrt(num_active_core));
     Vec2D xy = rank2xy(rank);
 
-
-
-
-
     // the +3 is because we have boundary check, some may fly away
     // size_o is the central domain's size
+
+    if (rmax < 10000) rmax = 10000;
+
     int size_o;
     if (alpha == 1)
         size_o = floor((3 * rmax) / (1 + 2 * alpha * (1-pow(alpha, (p-1)/2.0)) / (1-alpha) ) ) + 3;
     else
         size_o = 6 * rmax / l;
     Vec2D lower_o (-size/2, -size/2);
-
 
     // for all node calculate their own domain and update their GlobalDLA settings and pass it on to LocalDLA
     if (active){
@@ -169,20 +167,18 @@ void GlobalDLA::domain_decompose(){
         if (localDLA == NULL){
             // create a local DLA
             /////////////////////////////  DEBUG FLAG
+
+            comm = Communicator();
+            cluster = vector<Particle> ();
+            particle = vector<Particle> ();
+
+            LocalDLA = new LocalDLA(comm, cluster, particle, domain.upper, domain.lower);
         }
         else{
-            localDLA -> lower = 
-
-
+            localDLA -> set_domain(domain.upper, domain.lower)
+            localDLA -> migrate();
         }
-
-
-
-
     }
-
-
-
 }
 
 
@@ -190,7 +186,9 @@ void GlobalDLA::domain_decompose(){
 
 
 void GlobalDLA::simulate(int timestep){
-
+    for (unsigned int i = 0; i < 100; ++i){
+        localDLA -> simulate();
+    }
 }
 
 
@@ -204,8 +202,16 @@ void GlobalDLA::balance(){
     
 }
 
+
+// void helper_write(int rank, int p, ){
+
+// }
+
+
 void GlobalDLA::report(){
-    
+    cout << "Active Cores: " << num_active_core << endl;
+    cout << "Rank: " << rank << "," << localDLA -> report_domain() << endl;
+
 }
 
 
