@@ -1,3 +1,6 @@
+#ifndef __LOCALDLA__
+#define __LOCALDLA__
+
 #include <vector>;
 #include "Constants.h"
 #include "Vec2D.h"
@@ -17,7 +20,6 @@ private:
     // particle are list of free particles
     vector<Particle> cluster;
     vector<Particle> particle;
-    Communicator comm;
 
     // box config
     Vec2D lower, upper;
@@ -28,31 +30,39 @@ private:
 
 
 public:
-    LocalDLA(Communicator comm, vector<Particle> cluster, vector<Particle> particle, Vec2D corner1, Vec2D corner2): 
-        comm(comm), cluster(cluster), particle(particle)
+    LocalDLA(vector<Particle> cluster, vector<Particle> particle, Vec2D corner1, Vec2D corner2): 
+        cluster(cluster), particle(particle), upper(0,0), lower(0,0)
         {
         lower = min(corner1, corner2);
-        upper = min(corner1, corner2);  
+        upper = max(corner1, corner2);  
         }
 
-    set_domain(Vec2D corner1, Vec2D corner2){
+    void set_domain(Vec2D corner1, Vec2D corner2){
         lower = min(corner1, corner2);
-        upper = min(corner1, corner2); 
+        upper = max(corner1, corner2); 
     }
     
     // update is the step that updates the each processor's domain's diffusion and cluster formation
-    // update contains walk, particle attachment and communication stages   
-    update();
+    // update contains walk, particle attachment and communication(ghost exchange) stages   
+    void update();
 
     // migrate is the communication process in which every processor have already get the new 
-    migrate();
+    void migrate();
 
     //
-    report_domain();
-
-
-
-
+    string report_domain();
 
 
 };
+
+
+
+
+#endif //__LOCALDLA__
+
+
+
+
+
+
+

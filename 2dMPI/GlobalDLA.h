@@ -1,6 +1,8 @@
 /*
     Define Simulation Class
 */
+#ifndef __GLOBALDLA__
+#define __GLOBALDLA__
 
 #include "Constants.h"
 #include "Vec2D.h"
@@ -8,6 +10,7 @@
 #include "Particle.h"
 #include "LocalDLA.h"
 #include "mpi.h"
+#include <string>
 
 using namespace std;
 
@@ -16,15 +19,15 @@ using namespace std;
 /*
     Store MPI Comm Info
 */
-class Communicator{
+// class Communicator{
 
-public:
-    // p is total number of processors
-    int p, rank;
-    Communicator(int p, int rank) p(p), rank(rank);
+// public:
+//     // p is total number of processors
+//     int p, rank;
+//     Communicator(int p, int rank) p(p), rank(rank);
 
 
-};
+// };
 
 
 /*
@@ -37,37 +40,53 @@ public:
 
     // rmax is only meaningful for core-0
     float rmax = 0;
-    float alpha = ALPHA;
+    static const float alpha = ALPHA;
     int num_active_core = 0;
     bool active = false;
-    LocalDLA localDLA = NULL;
-
-    Communicator comm;
+    LocalDLA* localDLA = nullptr;
 
 
     // must run init after create instance
-    GlobalDLA();
-    init(int argc, char *argv[]);
+    GlobalDLA()
+    {
+    }
+    void init(int argc, char *argv[]);
 
 
 
-    simulate(int timestep);
+    void simulate();
 
     // spawn new particles to play with
-    spawn(int num_par);
-    activate_core();
+    void spawn(int num_par);
+    void activate_core();
 
     // load balance and redecomposition
-    domain_decompose();
-    report();
-    test();
+    void domain_decompose();
+    void report();
+    void test();
+    void balance();
 };
 
 
+struct Domain{
+    Vec2D upper;
+    Vec2D lower;
+};
+
+
+static inline int help_lower(int del, int size, float alpha, int lower_o);
+static inline int help_size(int del, int size, float alpha);
+static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o);
+inline Vec2D rank2xy(int rank, int num_active_core);
+inline int xy2rank(Vec2D xy, int num_active_core);
 
 
 
 
+
+
+
+#endif //__GLOBALDLA__
 
 
 

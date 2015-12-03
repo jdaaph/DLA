@@ -6,9 +6,11 @@
 #include "Vec2D.h"
 #include <vector>
 #include "Particle.h"
+#include "GlobalDLA.h"
 #include "mpi.h"
 #include <cmath>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -17,10 +19,10 @@ void GlobalDLA::init(int argc, char *argv[] ){
 
     MPI::Status status;
 
-    MPI::Init(argc, argv)
+    MPI::Init(argc, argv);
     this -> p = MPI::COMM_WORLD.Get_size();
     this -> rank = MPI::COMM_WORLD.Get_rank();
-    this -> rmas = 0;
+    this -> rmax = 0;
 // Master init:
     if (rank==0){
         Particle par (Vec2D(0, 0));
@@ -43,7 +45,7 @@ inline Vec2D rank2xy(int rank, int num_active_core){
 
 
 // helper function for processor grid <-> rank conversion
-inline Vec2D xy2rank(Vec2D xy, int num_active_core){
+inline int xy2rank(Vec2D xy, int num_active_core){
     int l = floor(sqrt(num_active_core));
     return (xy.x * l + xy.y);
 }
@@ -120,24 +122,26 @@ static inline int help_size(int del, int size, float alpha){
 // helper function for calculate the domain upper and lower corner
 // l is the square root of current available processor count
 
-struct Domain{
-    Vec2D upper;
-    Vec2D lower;
-};
 
-static int domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o){
+
+// also a helper
+static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o){
     int del_x = xy.x - (l-1)/2;
     int del_y = xy.y - (l-1)/2;
 
-    Vec2D lower(help_lower(del_x, size_o, alpha, lower_o), 
-                help_lower(del_y, size_o, alpha, lower_o) 
-               );
+    int lower_x = help_lower(del_x, size_o, alpha, lower_o.x);
+    int lower_y = help_lower(del_y, size_o, alpha, lower_o.y);
+
+    Vec2D lower( lower_x, lower_y);
 
     Vec2D upper(0,0);
 
-    int local_size = help_size(del, size_o, alpha);
-    upper = lower + Vec2D(local_size, local_size);
-    return Domain {upper, lower};
+    int local_size_x = help_size(del_x, size_o, alpha);
+    int local_size_y = help_size(del_y, size_o, alpha);
+
+    upper = lower + Vec2D(local_size_x, local_size_y);
+    Domain domain = {upper, lower};
+    return domain;
 }
 
 
@@ -146,7 +150,7 @@ void GlobalDLA::domain_decompose(){
 
     // the offset from the center of the processor grid
     int l = floor(sqrt(num_active_core));
-    Vec2D xy = rank2xy(rank);
+    Vec2D xy = rank2xy(rank, num_active_core);
 
     // the +3 is because we have boundary check, some may fly away
     // size_o is the central domain's size
@@ -158,24 +162,32 @@ void GlobalDLA::domain_decompose(){
         size_o = floor((3 * rmax) / (1 + 2 * alpha * (1-pow(alpha, (p-1)/2.0)) / (1-alpha) ) ) + 3;
     else
         size_o = 6 * rmax / l;
-    Vec2D lower_o (-size/2, -size/2);
+    Vec2D lower_o (-size_o/2, -size_o/2);
+
+
+
+    /////////////////// !! sync the rmax between cores
+
+
+
+
 
     // for all node calculate their own domain and update their GlobalDLA settings and pass it on to LocalDLA
     if (active){
-        Domain domain = domain_calculator(alpha, xy, l, size_o, lower_o)
+        Domain domain = domain_calculator(alpha, xy, l, size_o, lower_o);
 
-        if (localDLA == NULL){
+        if (localDLA == nullptr){
             // create a local DLA
             /////////////////////////////  DEBUG FLAG
 
-            comm = Communicator();
-            cluster = vector<Particle> ();
-            particle = vector<Particle> ();
+            // comm = Communicator();
+            vector<Particle> cluster = vector<Particle> ();
+            vector<Particle> particle = vector<Particle> ();
 
-            LocalDLA = new LocalDLA(comm, cluster, particle, domain.upper, domain.lower);
+            localDLA = new LocalDLA(cluster, particle, domain.upper, domain.lower);
         }
         else{
-            localDLA -> set_domain(domain.upper, domain.lower)
+            localDLA -> set_domain(domain.upper, domain.lower);
             localDLA -> migrate();
         }
     }
@@ -185,14 +197,14 @@ void GlobalDLA::domain_decompose(){
 
 
 
-void GlobalDLA::simulate(int timestep){
+void GlobalDLA::simulate(){
     for (unsigned int i = 0; i < 100; ++i){
-        localDLA -> simulate();
+        localDLA -> update();
     }
 }
 
 
-    // spawn new particles to play with
+// spawn new particles to play with
 void GlobalDLA::spawn(int num_par){
 
 }
@@ -210,13 +222,13 @@ void GlobalDLA::balance(){
 
 void GlobalDLA::report(){
     cout << "Active Cores: " << num_active_core << endl;
-    cout << "Rank: " << rank << "," << localDLA -> report_domain() << endl;
+    string report = localDLA -> report_domain();
+    cout << "Rank: " << rank << "," << report << endl;
 
 }
 
 
 void GlobalDLA::test(){
-    init();
     simulate();
     report();    
 }

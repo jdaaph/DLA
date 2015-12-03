@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char *argv[]){
 
     GlobalDLA experiment = GlobalDLA();
-    experiment.init(int argc, char *argv[]);
+    experiment.init(argc, argv);
     experiment.test();
 
     cout << "Biu! Done!" << endl;

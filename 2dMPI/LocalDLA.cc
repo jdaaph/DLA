@@ -22,7 +22,7 @@ void LocalDLA::migrate(){
 
 string LocalDLA::report_domain(){
     ostringstream os;
-    os << "Upper: (" << upper.x << ", " << upper.y << "), Lower: (" <<  << lower.x << ", " << lower.y << ")" << endl;
+    os << "Upper: (" << upper.x << ", " << upper.y << "), Lower: (" << lower.x << ", " << lower.y << ")" << endl;
     string s = os.str();
     return s;
 }

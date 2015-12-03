@@ -1,3 +1,6 @@
+#ifndef __CONSTANTS__
+#define __CONSTANTS__
+
 /*
     Defines all constants that will be used in the program with MACROS
 */
@@ -12,6 +15,7 @@
 
 
 
+#endif //__CONSTANTS__
 
 
 
