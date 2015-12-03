@@ -20,6 +20,11 @@ void LocalDLA::migrate(){
 }
 
 
+void LocalDLA::add_particle(vector<Particle>* spawn_p_lst){
+    particle.insert( particle.end(), spawn_p_lst -> begin(), spawn_p_lst -> end() );
+}
+
+
 string LocalDLA::report_domain(){
     ostringstream os;
     os << "Upper: (" << upper.x << ", " << upper.y << "), Lower: (" << lower.x << ", " << lower.y << ")" << endl;
@@ -28,7 +33,16 @@ string LocalDLA::report_domain(){
 }
 
 
+string LocalDLA::report_particle(){
+    ostringstream os;
 
+    for (std::vector<Particle>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+        cout << " (" << (*it).x << ", " << (*it).x << ") ";
+
+    os << endl;
+    string s = os.str();
+    return s;
+}
 
 
 

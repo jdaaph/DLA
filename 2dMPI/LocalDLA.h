@@ -49,9 +49,12 @@ public:
     // migrate is the communication process in which every processor have already get the new 
     void migrate();
 
+    void add_particles(vector<Particle>* spawn_p_lst);
+
     //
     string report_domain();
-
+    string report_particle();
+    string report_cluster();
 
 };
 

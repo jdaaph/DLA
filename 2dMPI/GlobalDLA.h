@@ -65,6 +65,9 @@ public:
     void report();
     void test();
     void balance();
+    void finalize(){
+        MPI::Finalize();
+    }
 };
 
 

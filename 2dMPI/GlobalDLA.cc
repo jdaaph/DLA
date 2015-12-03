@@ -11,6 +11,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <cstdlib> 
 
 using namespace std;
 
@@ -60,7 +61,7 @@ void GlobalDLA::activate_core(){
     if (num_active_core == p) return;
 
     // DEBUG FLAG
-    num_active_core = 9;
+    num_active_core = 25;
 
     if (rank < num_active_core) active = true;
 
@@ -155,13 +156,16 @@ void GlobalDLA::domain_decompose(){
     // the +3 is because we have boundary check, some may fly away
     // size_o is the central domain's size
 
-    if (rmax < 10000) rmax = 10000;
+    if (rmax < 100) rmax = 100;
 
     int size_o;
-    if (alpha == 1)
-        size_o = floor((3 * rmax) / (1 + 2 * alpha * (1-pow(alpha, (p-1)/2.0)) / (1-alpha) ) ) + 3;
+    if (alpha != 1)
+        size_o = floor((6 * rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
     else
         size_o = 6 * rmax / l;
+
+    // cout << size_o << endl;
+
     Vec2D lower_o (-size_o/2, -size_o/2);
 
 
@@ -198,20 +202,65 @@ void GlobalDLA::domain_decompose(){
 
 
 void GlobalDLA::simulate(){
+    // only active cores simulate
+    if (!active) return;
     for (unsigned int i = 0; i < 100; ++i){
         localDLA -> update();
     }
 }
 
 
+
+// The feasible region is a ring-like structure, this helper function determines if a domain has any feasible region
+
+// bool help_has_feasible(int spawn_rmin, int spawn_rmax){
+//     return true;
+// }
+
+
+
+
 // spawn new particles to play with
-void GlobalDLA::spawn(int num_par){
+// spawn_rate is the probability of spawning at a fixed location given it's a feasible spawn region
+void GlobalDLA::spawn(float spawn_rate, int spawn_rmin, int spawn_rmax){
+    // define spawn region
+
+    // test if the domain has any feasible region
+
+    // sanity check
+    if (spawn_rmin <= rmax){
+        cout << "Bug!!!!!!!!!!!!" << "Spawn particle may overlap with cluster" << endl;
+        throw std::runtime_error("Spawn particle may overlap with cluster");
+        return;
+    }
+
+    // generate that many random number
+    vector<Particle>* spawn_p_lst = new vector<Particle>();
+
+    num_spawn = floor(spawn_rate * get_area(upper, lower));
+    float tx, ty;
+    int tmp_x, tmp_y;
+    for (unsigned int i=0; i < num_spawn; ++i){
+        // get random number in [0,1]
+        tx = ((float) rand() / (RAND_MAX));
+        ty = ((float) rand() / (RAND_MAX));
+        tmp_x = floor ( tx * lower.x + (1 - tx) * upper.x);
+        tmp_y = floor ( tx * lower.x + (1 - tx) * upper.x);
+
+        // choose those in the feasible region and add them locally
+        if ((get_r( tmp_x, tmp_y ) <= spawn_rmax) && (get_r( tmp_x, tmp_y ) >= spawn_rmin) )
+            spawn_p_lst -> push_back( Vec2D(tmp_x, tmp_y) );
+    }
+    localDLA -> add_particles(spawn_p_lst);
+
+    // The garbage collection must be done!!!
+    delete spawn_p_lst;
 
 }
 
-    // load balance and redecomposition
+// load balance and redecomposition
 void GlobalDLA::balance(){
-    
+        
 }
 
 
@@ -221,6 +270,8 @@ void GlobalDLA::balance(){
 
 
 void GlobalDLA::report(){
+    // only active core report
+    if ( !active ) return; 
     cout << "Active Cores: " << num_active_core << endl;
     string report = localDLA -> report_domain();
     cout << "Rank: " << rank << "," << report << endl;
@@ -230,5 +281,6 @@ void GlobalDLA::report(){
 
 void GlobalDLA::test(){
     simulate();
-    report();    
+    report();
+    finalize();    
 }
