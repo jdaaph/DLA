@@ -37,7 +37,7 @@ string LocalDLA::report_particle(){
     ostringstream os;
 
     for (std::vector<Particle>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
-        cout << " (" << (*it).x << ", " << (*it).x << ") ";
+        os << " (" << (*it).x << ", " << (*it).x << ") ";
 
     os << endl;
     string s = os.str();
