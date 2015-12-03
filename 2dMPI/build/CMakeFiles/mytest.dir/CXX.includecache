@@ -27,6 +27,8 @@ iostream
 -
 string
 -
+cstdlib
+-
 
 /Users/daich/GitHub/DLA/2dMPI/GlobalDLA.h
 Constants.h
@@ -91,4 +93,8 @@ mpi.h
 /Users/daich/GitHub/DLA/2dMPI/mpi.h
 GlobalDLA.h
 /Users/daich/GitHub/DLA/2dMPI/GlobalDLA.h
+time.h
+-
+cstdlib
+-
 
