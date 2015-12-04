@@ -16,7 +16,34 @@ void LocalDLA::update(){
 }
 
 
+
+
 void LocalDLA::migrate(){
+// determine boundary cluster (ghost) and free particles' their should-be domain rank
+
+    // cluster section
+
+    ///////// note that it may happen at the corner and two neighbors must be noticed!
+    vector<Particle> c_W,c_E,c_N,c_S, ;
+
+    int rank_W, rank_E, rank_N, rank_S;
+
+    for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
+        if (it -> pos.x == upper.x) E.push_back(*it);
+        if (it -> pos.x == lower.x) W.push_back(*it);
+        if (it -> pos.y == upper.y) N.push_back(*it);
+        if (it -> pos.y == lower.y) S.push_back(*it);
+    }
+
+
+
+
+
+// sort them in terms of rank
+
+// do 6 neighbor comm, if they exists
+
+
 
 }
 
