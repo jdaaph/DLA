@@ -95,7 +95,7 @@ inline Vec2D midpoint(const Vec2D& a, const Vec2D& b){
 
 // get area from upper and lower
 inline int get_area(const Vec2D& a, const Vec2D& b){
-    return ( abs(a.x - b.x) * abs(a.y - b.y) );
+    return ( floor(fabs((a.x - b.x) * (a.y - b.y) )));
 }
 
 

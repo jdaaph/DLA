@@ -10,7 +10,7 @@
 
 
 // the decay rate of block size (short side)
-#define ALPHA 0.5
+#define ALPHA 1.5
 
 
 

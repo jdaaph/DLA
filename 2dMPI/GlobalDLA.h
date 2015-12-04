@@ -57,7 +57,7 @@ public:
     void simulate();
 
     // spawn new particles to play with
-    void spawn(int num_par);
+    void spawn(float spawn_rate, int spawn_rmin, int spawn_rmax);
     void activate_core();
 
     // load balance and redecomposition
