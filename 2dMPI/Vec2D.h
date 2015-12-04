@@ -95,19 +95,19 @@ inline Vec2D midpoint(const Vec2D& a, const Vec2D& b){
 
 // get area from upper and lower
 inline int get_area(const Vec2D& a, const Vec2D& b){
-    return ( abs(a.x - b.x) * abs(a.y - b.y) );
+    return ( floor(fabs((a.x - b.x) * (a.y - b.y) )));
 }
 
 
 // get distance to the origin
 inline float get_r(const Vec2D& a){
-    return sqrt( a.x * a.x + a.y * a.y)
+    return sqrt( a.x * a.x + a.y * a.y);
 }
 
 
 // get distance to the origin, int form
 inline float get_r(const int& x, const int& y){
-    return sqrt( x * x + y * y)
+    return sqrt( x * x + y * y);
 }
 
 

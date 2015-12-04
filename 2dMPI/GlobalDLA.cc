@@ -220,47 +220,9 @@ void GlobalDLA::simulate(){
 
 
 
-// spawn new particles to play with
-// spawn_rate is the probability of spawning at a fixed location given it's a feasible spawn region
-void GlobalDLA::spawn(float spawn_rate, int spawn_rmin, int spawn_rmax){
-    // define spawn region
-
-    // test if the domain has any feasible region
-
-    // sanity check
-    if (spawn_rmin <= rmax){
-        cout << "Bug!!!!!!!!!!!!" << "Spawn particle may overlap with cluster" << endl;
-        throw std::runtime_error("Spawn particle may overlap with cluster");
-        return;
-    }
-
-    // generate that many random number
-    vector<Particle>* spawn_p_lst = new vector<Particle>();
-
-    num_spawn = floor(spawn_rate * get_area(upper, lower));
-    float tx, ty;
-    int tmp_x, tmp_y;
-    for (unsigned int i=0; i < num_spawn; ++i){
-        // get random number in [0,1]
-        tx = ((float) rand() / (RAND_MAX));
-        ty = ((float) rand() / (RAND_MAX));
-        tmp_x = floor ( tx * lower.x + (1 - tx) * upper.x);
-        tmp_y = floor ( tx * lower.x + (1 - tx) * upper.x);
-
-        // choose those in the feasible region and add them locally
-        if ((get_r( tmp_x, tmp_y ) <= spawn_rmax) && (get_r( tmp_x, tmp_y ) >= spawn_rmin) )
-            spawn_p_lst -> push_back( Vec2D(tmp_x, tmp_y) );
-    }
-    localDLA -> add_particles(spawn_p_lst);
-
-    // The garbage collection must be done!!!
-    delete spawn_p_lst;
-
-}
-
 // load balance and redecomposition
 void GlobalDLA::balance(){
-        
+    
 }
 
 
@@ -274,13 +236,16 @@ void GlobalDLA::report(){
     if ( !active ) return; 
     cout << "Active Cores: " << num_active_core << endl;
     string report = localDLA -> report_domain();
-    cout << "Rank: " << rank << "," << report << endl;
+    string report2 = localDLA -> report_particle();
+
+    cout << "Rank: " << rank << "," << report << " " << report2 << endl;
 
 }
 
 
 void GlobalDLA::test(){
     simulate();
+    localDLA -> spawn(0.01, rmax ,rmax + 3, rmax + 5);
     report();
     finalize();    
 }
