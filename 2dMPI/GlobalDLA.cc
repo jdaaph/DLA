@@ -34,24 +34,6 @@ void GlobalDLA::init(int argc, char *argv[] ){
 }
 
 
-// helper function for processor grid <-> rank conversion
-inline Vec2D rank2xy(int rank, int num_active_core){
-    int l = floor(sqrt(num_active_core));
-    // if (l != sqrt(num_active_core)){
-    //     cout << "Error! not perfect square number of cores are allocated @.@?" << endl;
-    //     return;
-    // }
-    return Vec2D( rank / l, rank % l);
-}
-
-
-// helper function for processor grid <-> rank conversion
-inline int xy2rank(Vec2D xy, int num_active_core){
-    int l = floor(sqrt(num_active_core));
-    return (xy.x * l + xy.y);
-}
-
-
 
 // decide how many cores to use, this can reduce overhead at the beginning of the simulation
 void GlobalDLA::activate_core(){
@@ -192,7 +174,7 @@ void GlobalDLA::domain_decompose(){
         }
         else{
             localDLA -> set_domain(domain.upper, domain.lower);
-            localDLA -> migrate();
+            localDLA -> balance();
         }
     }
 }

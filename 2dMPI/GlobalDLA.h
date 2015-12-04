@@ -80,8 +80,6 @@ struct Domain{
 static inline int help_lower(int del, int size, float alpha, int lower_o);
 static inline int help_size(int del, int size, float alpha);
 static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o);
-inline Vec2D rank2xy(int rank, int num_active_core);
-inline int xy2rank(Vec2D xy, int num_active_core);
 
 
 

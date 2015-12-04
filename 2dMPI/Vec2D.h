@@ -111,6 +111,30 @@ inline float get_r(const int& x, const int& y){
 }
 
 
+// inline Vec2D rank2xy(int rank, int num_active_core);
+// inline int xy2rank(Vec2D xy, int num_active_core);
+
+// helper function for processor grid <-> rank conversion
+inline Vec2D rank2xy(int rank, int num_active_core){
+    int l = floor(sqrt(num_active_core));
+    // if (l != sqrt(num_active_core)){
+    //     cout << "Error! not perfect square number of cores are allocated @.@?" << endl;
+    //     return;
+    // }
+    return Vec2D( rank / l, rank % l);
+}
+
+
+// helper function for processor grid <-> rank conversion
+inline int xy2rank(Vec2D xy, int num_active_core){
+    int l = floor(sqrt(num_active_core));
+    int rank = (xy.x * l + xy.y);
+
+    // if core does not exist, return -1
+    if (rank < 0 || rank > num_active_core) return -1;
+    return rank;
+}
+
 
 #endif //__VECTOR_MATH_H__
 
