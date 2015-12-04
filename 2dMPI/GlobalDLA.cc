@@ -26,7 +26,6 @@ void GlobalDLA::init(int argc, char *argv[] ){
     this -> rmax = 0;
 // Master init:
     if (rank==0){
-        Particle par (Vec2D(0, 0));
         this -> active = true;
     }
     activate_core();
@@ -43,7 +42,7 @@ void GlobalDLA::activate_core(){
     if (num_active_core == p) return;
 
     // DEBUG FLAG
-    num_active_core = 25;
+    num_active_core = MPI::COMM_WORLD.Get_size();
 
     if (rank < num_active_core) active = true;
 
@@ -55,10 +54,6 @@ void GlobalDLA::activate_core(){
     //////////////////
 
     // scatter
-
-
-
-
 
 }
 
@@ -186,6 +181,18 @@ void GlobalDLA::domain_decompose(){
 void GlobalDLA::simulate(){
     // only active cores simulate
     if (!active) return;
+
+    ////////// DEBUG FLAG
+    if (rank == 0)
+        localDLA -> add_particle(Vec2D(0,0));
+
+    for (unsigned int i = 0; i < 100; ++i){
+        localDLA -> migrate(num_active_core, rank);
+    }
+    
+
+
+
     for (unsigned int i = 0; i < 100; ++i){
         localDLA -> update();
     }
@@ -227,7 +234,7 @@ void GlobalDLA::report(){
 
 void GlobalDLA::test(){
     simulate();
-    localDLA -> spawn(0.01, rmax ,rmax + 3, rmax + 5);
+    // localDLA -> spawn(0.01, rmax ,rmax + 3, rmax + 5);
     report();
     finalize();    
 }

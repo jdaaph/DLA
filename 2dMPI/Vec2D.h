@@ -131,7 +131,7 @@ inline int xy2rank(Vec2D xy, int num_active_core){
     int rank = (xy.x * l + xy.y);
 
     // if core does not exist, return -1
-    if (rank < 0 || rank > num_active_core) return -1;
+    if (rank < 0 || rank >= num_active_core) return -1;
     return rank;
 }
 

@@ -21,6 +21,15 @@ void LocalDLA::update(){
 int* help_pickel( std::vector<Particle>& c_lst, std::vector<Particle>& p_lst){
     // pickel serialize data, starts with one integer = c_lst.size(), and then cluster's x1,y1, x2,y2 .... then particles's x1,y1,x2,y2 .....
     int total_size = c_lst.size() * 2 + p_lst.size() * 2 + 1;
+    
+
+
+
+    // cout << total_size << endl;
+
+
+
+
     int* pickel = new int[total_size] ();
     pickel[0] = c_lst.size();
 
@@ -98,9 +107,14 @@ void LocalDLA::migrate(int num_active_core, int rank){
     rank_N = xy2rank( xy_current + Vec2D(0, +1), num_active_core);
     rank_S = xy2rank( xy_current + Vec2D(0, -1), num_active_core);
 
+    // cout << rank_E << " " << rank_W << " " << rank_N << " " << rank_S << endl;
+    // if (rank == 1){
+    //     cout << p_E .front(). pos.x << ", " << p_E .front().pos.y << endl;
+    // }
+
     help_migrate_one_side (rank_E, c_E, p_E);
     help_migrate_one_side (rank_W, c_W, p_W);
-    help_migrate_one_side (rank_N, c_N, p_S);
+    help_migrate_one_side (rank_N, c_N, p_N);
     help_migrate_one_side (rank_S, c_S, p_S);
 
 }
@@ -114,25 +128,51 @@ void LocalDLA::help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<P
     if (rank_E != -1) {
         // prepare
         int* msg_2E = help_pickel(c_E, p_E);
-        int size_2E = msg_2E[0];
+        
+        ////////// DEBUG FLAG
+        // cout << msg_2E[1] << endl;
 
+
+
+        // This is wrong 
+        int size_2E = c_E.size() * 2 + p_E.size() * 2 + 1;
         MPI::COMM_WORLD.Send(msg_2E, size_2E, MPI::INT, rank_E, 0);
+
+
+/////////////////// DEBIG FLAG !        
+        // cout << size_2E << endl;
+
+
+
+
+
         MPI::COMM_WORLD.Probe(rank_E, 0, status);
 
         int size_fE = status.Get_count(MPI::INT);
+
+
+/////////////////// DEBIG FLAG !
+        // cout << size_fE << endl;
+
         /////// if it's an empty message don't do anything
         if (size_fE){
+            // cout << "nonzero size!" << endl;
 
             int* buff_E = new int[size_fE] ();
             MPI::COMM_WORLD.Recv(buff_E, size_fE, MPI::INT, rank_E, 0);
 
             // decode the buffer
             int num_c_E = buff_E[0];
-            for (unsigned int i=1; i < num_c_E * 2; i += 2)
+            for (unsigned int i=1; i < num_c_E * 2; i += 2){
                 add_ghost_cluster( Vec2D(buff_E[i], buff_E[i + 1]));
+                cout << "!!!! Recv biu !!!!" << endl;
 
-            for (unsigned int i= 1 + num_c_E * 2; i < size_fE - 1; i += 2)
+            }
+            for (unsigned int i= 1 + num_c_E * 2; i < size_fE - 1; i += 2){
                 add_particle( Vec2D(buff_E[i], buff_E[i + 1]) );
+                cout << "!!!! Recv biu !!!!" << endl;
+            }
+                
             
             delete buff_E;
         }

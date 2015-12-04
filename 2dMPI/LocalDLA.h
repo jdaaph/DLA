@@ -29,6 +29,9 @@ private:
     // vector<Particle> g_W, g_E, g_N, g_S;
     vector<Particle> ghost;
 
+    // a helper that only deals with one neighboring side
+    void help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<Particle>& p_E);
+
 public:
     LocalDLA(vector<Particle> cluster, vector<Particle> particle, Vec2D corner1, Vec2D corner2): 
         cluster(cluster), particle(particle), upper(0,0), lower(0,0)
@@ -51,8 +54,7 @@ public:
 
     // migrate is the communication process in which every processor have already get the new 
     void migrate(int num_active_core, int rank);
-    // a helper that only deals with one neighboring side
-    void help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<Particle>& p_E);
+
 
     // spawn new particles to play with
     // spawn_rate is the probability of spawning at a fixed location given it's a feasible spawn region
