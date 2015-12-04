@@ -165,14 +165,10 @@ void LocalDLA::help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<P
             int num_c_E = buff_E[0];
             for (unsigned int i=1; i < num_c_E * 2; i += 2){
                 add_ghost_cluster( Vec2D(buff_E[i], buff_E[i + 1]));
-                cout << "!!!! Recv biu !!!!" << endl;
-
             }
             for (unsigned int i= 1 + num_c_E * 2; i < size_fE - 1; i += 2){
                 add_particle( Vec2D(buff_E[i], buff_E[i + 1]) );
-                cout << "!!!! Recv biu !!!!" << endl;
             }
-                
             
             delete buff_E;
         }
