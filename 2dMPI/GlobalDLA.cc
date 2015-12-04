@@ -186,16 +186,16 @@ void GlobalDLA::simulate(){
     if (rank == 0)
         localDLA -> add_particle(Vec2D(0,0));
 
-    for (unsigned int i = 0; i < 100; ++i){
+    for (unsigned int i = 0; i < 10000; ++i){
         localDLA -> migrate(num_active_core, rank);
     }
     
 
 
 
-    for (unsigned int i = 0; i < 100; ++i){
-        localDLA -> update();
-    }
+    // for (unsigned int i = 0; i < 100; ++i){
+    //     localDLA -> update();
+    // }
 }
 
 

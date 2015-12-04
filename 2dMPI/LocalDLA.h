@@ -32,6 +32,9 @@ private:
     // a helper that only deals with one neighboring side
     void help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<Particle>& p_E);
 
+    // random walk for particles and boundary checking + aggregation checking
+    void random_walk();
+
 public:
     LocalDLA(vector<Particle> cluster, vector<Particle> particle, Vec2D corner1, Vec2D corner2): 
         cluster(cluster), particle(particle), upper(0,0), lower(0,0)
@@ -47,7 +50,7 @@ public:
     
     // update is the step that updates the each processor's domain's diffusion and cluster formation
     // update contains walk, particle attachment and communication(ghost exchange) stages   
-    void update();
+    void update(int num_active_core, int rank);
 
     // balance is called only when the domain is redecomposed
     void balance();

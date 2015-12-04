@@ -12,9 +12,58 @@
 using namespace std;
 
 
-void LocalDLA::update(){
+void LocalDLA::update(int num_active_core, int rank){
+    random_walk();
+    migrate( num_active_core, rank);
 
 }
+
+
+// random walk include walk + aggregation checking (boundary checking is done by the migrate)
+///////// THIS IS A POTENTIAL OPTIMIZATION FLAG
+
+void LocalDLA::random_walk(){
+    int direction;
+
+
+    /// use the while way to write, because iter may change because boundary check
+
+    std::vector<Particle>::iterator it = p_lst.begin() 
+    while (; it != p_lst.end(); ++it){
+        direction = rand() % 4;
+        switch (direction){
+            case (0):
+            {
+                it -> pos += Vec2D (-1, 0);
+                break;
+            }
+            case (1):
+            {
+                it -> pos += Vec2D (+1, 0);
+                break;
+            }
+            case (2):
+            {
+                it -> pos += Vec2D (0, -1);
+                break;
+            }
+            case (3):
+            {
+                it -> pos += Vec2D (0, +1);
+                break;
+            }
+        }
+
+        it = aggregation_check( it );
+    }
+
+
+
+
+
+
+}
+
 
 
 
@@ -22,12 +71,10 @@ int* help_pickel( std::vector<Particle>& c_lst, std::vector<Particle>& p_lst){
     // pickel serialize data, starts with one integer = c_lst.size(), and then cluster's x1,y1, x2,y2 .... then particles's x1,y1,x2,y2 .....
     int total_size = c_lst.size() * 2 + p_lst.size() * 2 + 1;
     
+    // if (total_size == 1) total_size = 0;
 
-
-
+////////// POTENTIAL OPTIMIZATION FLAG
     // cout << total_size << endl;
-
-
 
 
     int* pickel = new int[total_size] ();
@@ -107,11 +154,6 @@ void LocalDLA::migrate(int num_active_core, int rank){
     rank_N = xy2rank( xy_current + Vec2D(0, +1), num_active_core);
     rank_S = xy2rank( xy_current + Vec2D(0, -1), num_active_core);
 
-    // cout << rank_E << " " << rank_W << " " << rank_N << " " << rank_S << endl;
-    // if (rank == 1){
-    //     cout << p_E .front(). pos.x << ", " << p_E .front().pos.y << endl;
-    // }
-
     help_migrate_one_side (rank_E, c_E, p_E);
     help_migrate_one_side (rank_W, c_W, p_W);
     help_migrate_one_side (rank_N, c_N, p_N);
@@ -128,36 +170,15 @@ void LocalDLA::help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<P
     if (rank_E != -1) {
         // prepare
         int* msg_2E = help_pickel(c_E, p_E);
-        
-        ////////// DEBUG FLAG
-        // cout << msg_2E[1] << endl;
-
-
 
         // This is wrong 
         int size_2E = c_E.size() * 2 + p_E.size() * 2 + 1;
         MPI::COMM_WORLD.Send(msg_2E, size_2E, MPI::INT, rank_E, 0);
-
-
-/////////////////// DEBIG FLAG !        
-        // cout << size_2E << endl;
-
-
-
-
-
         MPI::COMM_WORLD.Probe(rank_E, 0, status);
-
         int size_fE = status.Get_count(MPI::INT);
-
-
-/////////////////// DEBIG FLAG !
-        // cout << size_fE << endl;
 
         /////// if it's an empty message don't do anything
         if (size_fE){
-            // cout << "nonzero size!" << endl;
-
             int* buff_E = new int[size_fE] ();
             MPI::COMM_WORLD.Recv(buff_E, size_fE, MPI::INT, rank_E, 0);
 
@@ -192,6 +213,7 @@ void LocalDLA::spawn(float spawn_rate, int rmax, int spawn_rmin, int spawn_rmax)
     // rmax is the actual
 
     // test if the domain has any feasible region
+    srand(RANDOM_SEED_SPAWN);
 
     // sanity check
     if (spawn_rmin <= rmax){
