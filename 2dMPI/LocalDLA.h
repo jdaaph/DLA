@@ -25,8 +25,7 @@ private:
     Vec2D lower, upper;
     int ghost_region = GHOST_REGION;
 
-    // ghost particles
-    // vector<Particle> g_W, g_E, g_N, g_S;
+    // ghost cluster
     vector<Particle> ghost;
 
     // a helper that only deals with one neighboring side
@@ -34,14 +33,23 @@ private:
 
     // random walk for particles and boundary checking + aggregation checking
     void random_walk();
+    std::vector<Particle>::iterator aggregation_check(std::vector<Particle>::iterator it);
 
 public:
+    float rmax = 0;
+
+
+    
     LocalDLA(vector<Particle> cluster, vector<Particle> particle, Vec2D corner1, Vec2D corner2): 
         cluster(cluster), particle(particle), upper(0,0), lower(0,0)
         {
         lower = min(corner1, corner2);
         upper = max(corner1, corner2);  
         }
+
+    float local_rmax(){
+        return rmax;
+    }
 
     void set_domain(Vec2D corner1, Vec2D corner2){
         lower = min(corner1, corner2);
@@ -72,6 +80,7 @@ public:
     }
 
     void add_particles(vector<Particle>* spawn_p_lst);
+    
 
     //
     string report_domain();
@@ -80,6 +89,7 @@ public:
     int local_area(){
         return get_area(upper, lower);
     }
+
 
 };
 

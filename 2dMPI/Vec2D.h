@@ -86,6 +86,7 @@ inline Vec2D max(const Vec2D& a, const Vec2D& b){
                  );
 }
 
+
 // midpoint vector is the midpoint of two lovely vectors
 inline Vec2D midpoint(const Vec2D& a, const Vec2D& b){
     return Vec2D (  (a.x + b.x)/2.0,
@@ -93,9 +94,16 @@ inline Vec2D midpoint(const Vec2D& a, const Vec2D& b){
                  );
 }
 
+
 // get area from upper and lower
 inline int get_area(const Vec2D& a, const Vec2D& b){
     return ( floor(fabs((a.x - b.x) * (a.y - b.y) )));
+}
+
+
+// get the square of distance between two vectors
+inline int get_distance2(const Vec2D& a, const Vec2D& b){
+    return ( (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
 }
 
 

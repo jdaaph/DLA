@@ -25,11 +25,9 @@ void LocalDLA::update(int num_active_core, int rank){
 void LocalDLA::random_walk(){
     int direction;
 
-
     /// use the while way to write, because iter may change because boundary check
-
-    std::vector<Particle>::iterator it = p_lst.begin() 
-    while (; it != p_lst.end(); ++it){
+    std::vector<Particle>::iterator it = particle.begin();
+    while (it != particle.end()){
         direction = rand() % 4;
         switch (direction){
             case (0):
@@ -53,17 +51,30 @@ void LocalDLA::random_walk(){
                 break;
             }
         }
-
+        // aggregation_check will automatically change the iterator to the next
         it = aggregation_check( it );
+
     }
-
-
-
-
-
-
 }
 
+
+std::vector<Particle>::iterator LocalDLA::aggregation_check(std::vector<Particle>::iterator it){
+    // iterate over the cluster to check if the cluster is in the particle's spherical region (), if this happens, this particle is removed from particle to be added as cluster
+    Vec2D p_pos(it -> pos);
+    for (std::vector<Particle>::iterator c_it = cluster.begin() ; c_it != cluster.end(); ++ c_it){
+        // only direct neighbor can trigger it 
+        if (get_distance2(c_it -> pos, p_pos) <= 1 ) {
+            cluster.push_back(Particle(p_pos));
+            // update the local rmax if it is farthest from origin
+            if ( get_r(p_pos) > rmax )  rmax = get_r(p_pos);
+            return (particle.erase(it));
+        }
+    }
+
+    // if all check are done!
+    ++ it;
+    return it;
+}
 
 
 

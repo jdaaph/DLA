@@ -11,6 +11,7 @@
 #include "LocalDLA.h"
 #include "mpi.h"
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -52,12 +53,17 @@ public:
     }
     void init(int argc, char *argv[]);
 
+    void set_rmax(float value){
+        if (value > max(rmax, localDLA -> rmax)){
+            rmax = value;
+            localDLA -> rmax = value;
+        }
+    }
 
-
-    void simulate();
+    void simulate(int timestep);
 
     // spawn new particles to play with
-    void spawn(float spawn_rate, int spawn_rmin, int spawn_rmax);
+    void spawn(float spawn_rate);
     void activate_core();
 
     // load balance and redecomposition

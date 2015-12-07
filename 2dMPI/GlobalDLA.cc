@@ -175,31 +175,6 @@ void GlobalDLA::domain_decompose(){
 }
 
 
-
-
-
-void GlobalDLA::simulate(){
-    // only active cores simulate
-    if (!active) return;
-
-    ////////// DEBUG FLAG
-    if (rank == 0)
-        localDLA -> add_particle(Vec2D(0,0));
-
-    for (unsigned int i = 0; i < 10000; ++i){
-        localDLA -> migrate(num_active_core, rank);
-    }
-    
-
-
-
-    // for (unsigned int i = 0; i < 100; ++i){
-    //     localDLA -> update();
-    // }
-}
-
-
-
 // The feasible region is a ring-like structure, this helper function determines if a domain has any feasible region
 
 // bool help_has_feasible(int spawn_rmin, int spawn_rmax){
@@ -220,6 +195,18 @@ void GlobalDLA::balance(){
 // }
 
 
+// wrapper function for spawning, ensure rmax is all correctly calculated
+void GlobalDLA::spawn(float spawn_rate){
+    // update the rmax
+    rmax = max(rmax, localDLA -> rmax);
+    float tmp_rmax;
+    MPI::COMM_WORLD.Allreduce(&rmax, &tmp_rmax, 1, MPI::FLOAT, MPI::MAX);
+    set_rmax(tmp_rmax);
+
+    localDLA -> spawn(spawn_rate, rmax, rmax + 1, rmax + 10);
+}
+
+
 void GlobalDLA::report(){
     // only active core report
     if ( !active ) return; 
@@ -232,9 +219,27 @@ void GlobalDLA::report(){
 }
 
 
+
+void GlobalDLA::simulate(int timestep){
+    // only active cores simulate
+    if (!active) return;
+    // ////////// DEBUG FLAG
+    // if (rank == 0)
+    //     localDLA -> add_particle(Vec2D(0,0));
+    for (unsigned int i = 0; i < timestep; ++i){
+        localDLA -> update(num_active_core, rank);
+        if (i % 300 == 0)
+            spawn(0.001);
+
+        // MPI::COMM_WORLD.Barrier();
+        // cout << "=========" << endl;
+        // report();
+    }
+}
+
+
 void GlobalDLA::test(){
-    simulate();
-    // localDLA -> spawn(0.01, rmax ,rmax + 3, rmax + 5);
-    report();
+
+    simulate(1e5);
     finalize();    
 }
