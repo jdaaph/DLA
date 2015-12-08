@@ -41,7 +41,7 @@ public:
 
     // rmax is only meaningful for core-0
     float rmax = 0;
-    static const float alpha = ALPHA;
+    float alpha = ALPHA;
     int num_active_core = 0;
     bool active = false;
     LocalDLA* localDLA = nullptr;
