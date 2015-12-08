@@ -98,9 +98,6 @@ static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D 
 
 
 
-
-
-
 #endif //__GLOBALDLA__
 
 

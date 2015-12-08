@@ -69,6 +69,8 @@ std::vector<Particle>::iterator LocalDLA::aggregation_check(std::vector<Particle
             if ( get_r(p_pos) > rmax )  rmax = get_r(p_pos);
             return (particle.erase(it));
         }
+
+        if (get_r(p_pos) > 3 * )
     }
 
     // if all check are done!
