@@ -60,6 +60,14 @@ public:
         }
     }
 
+    void sync_rmax(){
+        if (localDLA)
+            rmax = max(rmax, localDLA -> rmax);
+        float tmp_rmax;
+        MPI::COMM_WORLD.Allreduce(&rmax, &tmp_rmax, 1, MPI::FLOAT, MPI::MAX);
+        set_rmax(tmp_rmax);
+    }
+
     void simulate(int timestep);
 
     // spawn new particles to play with

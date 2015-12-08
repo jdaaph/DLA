@@ -124,7 +124,7 @@ static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D 
 
 
 void GlobalDLA::domain_decompose(){
-    // if there is global info stored at core-0, scatter and everyone add their right ones? or pass on one by one
+
 
     // the offset from the center of the processor grid
     int l = floor(sqrt(num_active_core));
@@ -133,25 +133,17 @@ void GlobalDLA::domain_decompose(){
     // the +3 is because we have boundary check, some may fly away
     // size_o is the central domain's size
 
-    if (rmax < 100) rmax = 100;
+    /////////////////// !!!!!!!!!!!!!!!!!!!!! sync the rmax between cores
+    sync_rmax();
+    float domain_rmax = max(1000, );
 
     int size_o;
     if (alpha != 1)
-        size_o = floor((6 * rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
+        size_o = floor((6 * domain_rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
     else
-        size_o = 6 * rmax / l;
-
-    // cout << size_o << endl;
+        size_o = 6 * domain_rmax / l;
 
     Vec2D lower_o (-size_o/2, -size_o/2);
-
-
-
-    /////////////////// !! sync the rmax between cores
-
-
-
-
 
     // for all node calculate their own domain and update their GlobalDLA settings and pass it on to LocalDLA
     if (active){
@@ -198,11 +190,7 @@ void GlobalDLA::balance(){
 // wrapper function for spawning, ensure rmax is all correctly calculated
 void GlobalDLA::spawn(float spawn_rate){
     // update the rmax
-    rmax = max(rmax, localDLA -> rmax);
-    float tmp_rmax;
-    MPI::COMM_WORLD.Allreduce(&rmax, &tmp_rmax, 1, MPI::FLOAT, MPI::MAX);
-    set_rmax(tmp_rmax);
-
+    sync_rmax();
     localDLA -> spawn(spawn_rate, rmax, rmax + 1, rmax + 10);
 }
 
@@ -229,7 +217,7 @@ void GlobalDLA::simulate(int timestep){
     for (unsigned int i = 0; i < timestep; ++i){
         localDLA -> update(num_active_core, rank);
         if (i % 300 == 0)
-            spawn(0.001);
+            spawn(0.1);
 
         // MPI::COMM_WORLD.Barrier();
         // cout << "=========" << endl;
@@ -240,6 +228,7 @@ void GlobalDLA::simulate(int timestep){
 
 void GlobalDLA::test(){
 
-    simulate(1e5);
+    simulate(1e4);
+    report();
     finalize();    
 }
