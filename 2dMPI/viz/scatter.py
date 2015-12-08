@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 parser = lambda text: tuple(map(int, (text.split(","))))
 
-
-with open("raw.txt") as infile:
+with open("p.txt") as infile:
+# with open("step1e4_np9.txt") as infile:
     raw = infile.read()
     final = raw.replace(" ", "")
     final = final.replace("(", "")
@@ -18,6 +18,7 @@ with open("raw.txt") as infile:
 plt.scatter(*zip(*data))
 plt.show()
 
+print (len(data))
 
 
 

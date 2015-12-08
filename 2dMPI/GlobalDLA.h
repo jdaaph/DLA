@@ -76,12 +76,17 @@ public:
 
     // spawn new particles to play with
     void spawn(float spawn_rate);
+    void add_seed_cluster();
     void activate_core();
 
     // load balance and redecomposition
     void domain_decompose();
     void report();
+    void report_collective_cluster();
+
+
     void test();
+    void test_migration();
     void balance();
     void finalize(){
         MPI::Finalize();

@@ -10,9 +10,9 @@
 
 
 // the decay rate of block size (short side)
-#define ALPHA 1.5
-#define RANDOM_SEED_SPAWN 13157
-#define RANDOM_SEED_WALK 19101
+#define ALPHA 5
+#define RANDOM_SEED_SPAWN 1608
+#define RANDOM_SEED_WALK 888
 
 
 // Bound factor: if particle has a r > b.f. * rmax then it's discarded
@@ -22,6 +22,10 @@
 // Random Seed 
 
 
+
+
+
+#define TIME_STEP 2e4
 
 
 #endif //__CONSTANTS__

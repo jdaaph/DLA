@@ -213,6 +213,21 @@ void GlobalDLA::report(){
 }
 
 
+void GlobalDLA::report_collective_cluster(){
+    string report = localDLA -> report_cluster();
+    string report2 = localDLA -> report_particle();
+
+    // cout << "======== cluster ======== rank: " << rank << endl;
+    // cout << report << endl;
+    // cout << "======== particle ======== rank: " << rank << endl;
+    // cout << report2 << endl;
+
+    cout << report ;
+
+
+}
+
+
 
 void GlobalDLA::simulate(int timestep){
     // only active cores simulate
@@ -232,20 +247,71 @@ void GlobalDLA::simulate(int timestep){
 }
 
 
-void GlobalDLA::test(){
 
-    // add at the central node the first cluster seed
+// add at the central node the first cluster seed
+void GlobalDLA::add_seed_cluster(){
     int l = floor(sqrt(p));
     if (rank2xy(rank, num_active_core).x == (l-1)/2 &&  rank2xy(rank, num_active_core).y == (l-1)/2 ){
-
-        cout << "FLAG" << endl;
-
         localDLA -> add_cluster(Vec2D(0,0));
+    }
+}
 
+
+void GlobalDLA::test(){
+
+    add_seed_cluster();
+    double time_i, time_f;
+
+    if (rank == 0)
+        time_i = MPI::Wtime();
+
+    MPI::COMM_WORLD.Barrier();
+
+    simulate(TIME_STEP);
+
+    MPI::COMM_WORLD.Barrier();
+    if (rank == 0){
+        time_f = MPI::Wtime();
+        cout << "=============\n" << "time = " << time_f - time_i << endl;
     }
 
-    simulate(1e5);
-    if (rank == 4)
-        report();
+
+    report_collective_cluster();
+
+    MPI::COMM_WORLD.Barrier();
+
+    cout << "BIUBIUBIU" << endl;
+    cout << "mig_time: " << localDLA -> mig_time << endl;
+
+    // if (rank == 4 || rank == 0)
+    //     report();
+
     finalize();    
 }
+
+
+// for debug the migration process
+void GlobalDLA::test_migration(){
+    add_seed_cluster();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

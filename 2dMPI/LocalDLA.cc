@@ -69,12 +69,23 @@ std::vector<Particle>::iterator LocalDLA::aggregation_check(std::vector<Particle
     // aggregation check
     for (std::vector<Particle>::iterator c_it = cluster.begin() ; c_it != cluster.end(); ++ c_it){
         // only direct neighbor can trigger it 
-        if (get_distance2(c_it -> pos, p_pos) <= 1 ) {
-
-            cout << "rmax = " << rmax << ", newly_attach: " << p_pos.x << endl;
-            cout << p_pos.y << endl;
 
 
+        if (get_distance2(c_it -> pos, p_pos) <= 1) {
+
+            // cout << "rmax = " << rmax << ", newly_attach: " << p_pos.x << endl;
+            // cout << p_pos.y << endl;
+            cluster.push_back(Particle(p_pos));
+            // update the local rmax if it is farthest from origin
+            if ( get_r(p_pos) > rmax )  rmax = get_r(p_pos);
+            return (particle.erase(it));
+        }
+    }
+
+
+    ////////////////////// Don't forget the ghost check
+    for (std::vector<Particle>::iterator g_it = ghost.begin() ; g_it != ghost.end(); ++ g_it){
+        if (get_distance2(g_it -> pos, p_pos) <= 1) {
             cluster.push_back(Particle(p_pos));
             // update the local rmax if it is farthest from origin
             if ( get_r(p_pos) > rmax )  rmax = get_r(p_pos);
@@ -124,6 +135,7 @@ void LocalDLA::migrate(int num_active_core, int rank){
 
     // cluster section
 
+
     ///////// note that it may happen at the corner and two neighbors must be noticed!
     vector<Particle> c_W, c_E, c_N, c_S;
     vector<Particle> p_W, p_E, p_N, p_S;
@@ -131,8 +143,9 @@ void LocalDLA::migrate(int num_active_core, int rank){
     int rank_W, rank_E, rank_N, rank_S;
 
     // THIS can be optimized, we don't have to check for ghost for all clusters, we can only check the newly formed clusters, but I guess this ain't the bottleneck anyway
+    double time_i = MPI::Wtime();
 
-    // cluster => ghost 
+    // cluster => push to neighbors to update ghost 
     for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
         if (it -> pos.x == upper.x) c_E.push_back(*it);
         if (it -> pos.x == lower.x) c_W.push_back(*it);
@@ -168,6 +181,8 @@ void LocalDLA::migrate(int num_active_core, int rank){
         // if any branch if triggered, this particle would be moved and iterator would be updated
         it ++;
     }
+    double time_f = MPI::Wtime();
+
 
     // Now check for neighbor existence and get rank
     Vec2D xy_current = rank2xy(rank, num_active_core);
@@ -181,6 +196,7 @@ void LocalDLA::migrate(int num_active_core, int rank){
     help_migrate_one_side (rank_N, c_N, p_N);
     help_migrate_one_side (rank_S, c_S, p_S);
 
+    mig_time += time_f - time_i;
 }
 
 
@@ -247,10 +263,14 @@ void LocalDLA::spawn(float spawn_rate, int rmax, int spawn_rmin, int spawn_rmax)
     // generate that many random number
     vector<Particle>* spawn_p_lst = new vector<Particle>();
 
-    int num_spawn = floor(spawn_rate * get_area(upper, lower));
+    int num_spawn = ceil(spawn_rate * get_area(upper, lower));
     float tx, ty;
     int tmp_x, tmp_y;
+    int actual_num_spawn = 0;
+
+
     for (unsigned int i=0; i < num_spawn; ++i){
+
         // get random number in [0,1]
         tx = ((float) rand() / (RAND_MAX));
         ty = ((float) rand() / (RAND_MAX));
@@ -258,9 +278,13 @@ void LocalDLA::spawn(float spawn_rate, int rmax, int spawn_rmin, int spawn_rmax)
         tmp_y = floor ( ty * lower.y + (1 - ty) * upper.y);
 
         // choose those in the feasible region and add them locally
-        if ((get_r( tmp_x, tmp_y ) <= spawn_rmax) && (get_r( tmp_x, tmp_y ) >= spawn_rmin) )
+        if ((get_r( tmp_x, tmp_y ) <= spawn_rmax) && (get_r( tmp_x, tmp_y ) >= spawn_rmin) ){
             spawn_p_lst -> push_back( Vec2D(tmp_x, tmp_y) );
+            actual_num_spawn ++;
+        }
     }
+
+    cout << "rmax = " << rmax << ", num_trial: " << num_spawn << ", actual_num_spawn: " << actual_num_spawn << endl;
     add_particles(spawn_p_lst);
 
     // The garbage collection must be done!!!

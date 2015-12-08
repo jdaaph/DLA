@@ -37,6 +37,7 @@ private:
 
 public:
     float rmax = 0;
+    float mig_time = 0;
 
 
     
