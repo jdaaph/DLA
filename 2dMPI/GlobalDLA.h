@@ -54,14 +54,18 @@ public:
     void init(int argc, char *argv[]);
 
     void set_rmax(float value){
-        if (value > max(rmax, localDLA -> rmax)){
-            rmax = value;
-            localDLA -> rmax = value;
+        if (localDLA != nullptr){
+            if (value > max(rmax, localDLA -> rmax)){
+                rmax = value;
+                localDLA -> rmax = value;
+            }
         }
+        else
+            if (value > rmax) rmax = value;
     }
 
     void sync_rmax(){
-        if (localDLA)
+        if (localDLA != nullptr)
             rmax = max(rmax, localDLA -> rmax);
         float tmp_rmax;
         MPI::COMM_WORLD.Allreduce(&rmax, &tmp_rmax, 1, MPI::FLOAT, MPI::MAX);

@@ -61,16 +61,25 @@ void LocalDLA::random_walk(){
 std::vector<Particle>::iterator LocalDLA::aggregation_check(std::vector<Particle>::iterator it){
     // iterate over the cluster to check if the cluster is in the particle's spherical region (), if this happens, this particle is removed from particle to be added as cluster
     Vec2D p_pos(it -> pos);
+
+    // out of bound check 
+    if (get_r(p_pos) > BOUND_FACTOR * fmax(rmax, 100.0))
+        return (particle.erase(it));
+
+    // aggregation check
     for (std::vector<Particle>::iterator c_it = cluster.begin() ; c_it != cluster.end(); ++ c_it){
         // only direct neighbor can trigger it 
         if (get_distance2(c_it -> pos, p_pos) <= 1 ) {
+
+            cout << "rmax = " << rmax << ", newly_attach: " << p_pos.x << endl;
+            cout << p_pos.y << endl;
+
+
             cluster.push_back(Particle(p_pos));
             // update the local rmax if it is farthest from origin
             if ( get_r(p_pos) > rmax )  rmax = get_r(p_pos);
             return (particle.erase(it));
         }
-
-        if (get_r(p_pos) > 3 * )
     }
 
     // if all check are done!
@@ -285,7 +294,16 @@ string LocalDLA::report_particle(){
 }
 
 
+string LocalDLA::report_cluster(){
+    ostringstream os;
 
+    for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it)
+        os << " (" << (*it).pos.x << ", " << (*it).pos.y << ") ";
+
+    os << endl;
+    string s = os.str();
+    return s;
+}
 
 
 

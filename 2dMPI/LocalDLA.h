@@ -79,8 +79,13 @@ public:
         particle.push_back(Particle(pos));
     }
 
+    inline void add_cluster(Vec2D pos){
+        cluster.push_back(Particle(pos));
+    }
+
+
     void add_particles(vector<Particle>* spawn_p_lst);
-    
+
 
     //
     string report_domain();

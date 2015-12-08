@@ -134,8 +134,12 @@ void GlobalDLA::domain_decompose(){
     // size_o is the central domain's size
 
     /////////////////// !!!!!!!!!!!!!!!!!!!!! sync the rmax between cores
+
+
+
     sync_rmax();
-    float domain_rmax = max(1000, );
+
+    float domain_rmax = fmax(100.0, rmax);
 
     int size_o;
     if (alpha != 1)
@@ -151,9 +155,6 @@ void GlobalDLA::domain_decompose(){
 
         if (localDLA == nullptr){
             // create a local DLA
-            /////////////////////////////  DEBUG FLAG
-
-            // comm = Communicator();
             vector<Particle> cluster = vector<Particle> ();
             vector<Particle> particle = vector<Particle> ();
 
@@ -191,7 +192,7 @@ void GlobalDLA::balance(){
 void GlobalDLA::spawn(float spawn_rate){
     // update the rmax
     sync_rmax();
-    localDLA -> spawn(spawn_rate, rmax, rmax + 1, rmax + 10);
+    localDLA -> spawn(spawn_rate, rmax, rmax + 4, rmax + 14);
 }
 
 
@@ -199,11 +200,16 @@ void GlobalDLA::report(){
     // only active core report
     if ( !active ) return; 
     cout << "Active Cores: " << num_active_core << endl;
-    string report = localDLA -> report_domain();
-    string report2 = localDLA -> report_particle();
+    // string report = localDLA -> report_domain();
+    // string report2 = localDLA -> report_particle();
+    // cout << "Rank: " << rank << "," << report << " " << report2 << endl;
+    
 
+    string report = localDLA -> report_domain();
+    string report2 = localDLA -> report_cluster();
     cout << "Rank: " << rank << "," << report << " " << report2 << endl;
 
+    cout << "Particle: " << localDLA -> report_particle() << endl;
 }
 
 
@@ -211,13 +217,13 @@ void GlobalDLA::report(){
 void GlobalDLA::simulate(int timestep){
     // only active cores simulate
     if (!active) return;
-    // ////////// DEBUG FLAG
-    // if (rank == 0)
-    //     localDLA -> add_particle(Vec2D(0,0));
+
+
+
     for (unsigned int i = 0; i < timestep; ++i){
         localDLA -> update(num_active_core, rank);
         if (i % 300 == 0)
-            spawn(0.1);
+            spawn(0.01);
 
         // MPI::COMM_WORLD.Barrier();
         // cout << "=========" << endl;
@@ -228,7 +234,18 @@ void GlobalDLA::simulate(int timestep){
 
 void GlobalDLA::test(){
 
-    simulate(1e4);
-    report();
+    // add at the central node the first cluster seed
+    int l = floor(sqrt(p));
+    if (rank2xy(rank, num_active_core).x == (l-1)/2 &&  rank2xy(rank, num_active_core).y == (l-1)/2 ){
+
+        cout << "FLAG" << endl;
+
+        localDLA -> add_cluster(Vec2D(0,0));
+
+    }
+
+    simulate(1e5);
+    if (rank == 4)
+        report();
     finalize();    
 }

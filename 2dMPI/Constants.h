@@ -15,6 +15,10 @@
 #define RANDOM_SEED_WALK 19101
 
 
+// Bound factor: if particle has a r > b.f. * rmax then it's discarded
+#define BOUND_FACTOR 3
+
+
 // Random Seed 
 
 
