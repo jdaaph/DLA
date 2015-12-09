@@ -201,6 +201,105 @@ void LocalDLA::migrate(int num_active_core, int rank){
 }
 
 
+// re-decompose communication
+
+// do this l + 1 times to ensure correctness
+// the send dispatcher would also go through the lately received
+// cluster and particle would be passed and after received stored in a special place
+
+// potential change is use all scatter, but this would not be run many times so it doesn't matter
+
+
+
+// last step!!! call migrate to get the right ghost cluster
+
+void LocalDLA::balance_migrate(int num_active_core, int rank, std::vector<Particle> recv_cluster, std::vector<Particle> recv_particle){
+// determine boundary cluster (ghost) and free particles' their should-be domain rank
+
+    // cluster section
+    ///////// note that it may happen at the corner and two neighbors must be noticed!
+    vector<Particle> c_W, c_E, c_N, c_S;
+    vector<Particle> p_W, p_E, p_N, p_S;
+
+    int rank_W, rank_E, rank_N, rank_S;
+
+    // THIS can be optimized, we don't have to check for ghost for all clusters, we can only check the newly formed clusters, but I guess this ain't the bottleneck anyway
+
+
+    // cluster => push to neighbors to update ghost 
+    for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
+        if (it -> pos.x > upper.x) c_E.push_back(*it);
+        if (it -> pos.x > lower.x) c_W.push_back(*it);
+        if (it -> pos.y > upper.y) c_N.push_back(*it);
+        if (it -> pos.y > lower.y) c_S.push_back(*it);
+    }
+
+    for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
+        if (it -> pos.x == upper.x) c_E.push_back(*it);
+        if (it -> pos.x == lower.x) c_W.push_back(*it);
+        if (it -> pos.y == upper.y) c_N.push_back(*it);
+        if (it -> pos.y == lower.y) c_S.push_back(*it);
+    }
+
+
+
+
+
+
+    // particle => migrate
+    // remember to delete the particles that migrate
+
+    std::vector<Particle>::iterator it = particle.begin() ;
+    while ( it != particle.end()){
+        if (it -> pos.x > upper.x) {
+            p_E.push_back(*it);
+            it = particle.erase(it);
+            continue;
+        }
+        if (it -> pos.x < lower.x) {
+            p_W.push_back(*it);
+            it = particle.erase(it);
+            continue;
+        }
+        if (it -> pos.y > upper.y){ 
+            p_N.push_back(*it);
+            it = particle.erase(it);
+            continue;
+        }
+        if (it -> pos.y < lower.y) {
+            p_S.push_back(*it);
+            it = particle.erase(it);
+            continue;
+        }
+        // if any branch if triggered, this particle would be moved and iterator would be updated
+        it ++;
+    }
+
+
+
+    // Now check for neighbor existence and get rank
+    Vec2D xy_current = rank2xy(rank, num_active_core);
+    rank_E = xy2rank( xy_current + Vec2D(+1, 0), num_active_core);
+    rank_W = xy2rank( xy_current + Vec2D(-1, 0), num_active_core);
+    rank_N = xy2rank( xy_current + Vec2D(0, +1), num_active_core);
+    rank_S = xy2rank( xy_current + Vec2D(0, -1), num_active_core);
+
+    double time_i = MPI::Wtime();
+    help_migrate_one_side (rank_E, c_E, p_E);
+    help_migrate_one_side (rank_W, c_W, p_W);
+    help_migrate_one_side (rank_N, c_N, p_N);
+    help_migrate_one_side (rank_S, c_S, p_S);
+    double time_f = MPI::Wtime();
+    mig_time += time_f - time_i;
+}
+
+
+
+
+
+
+
+
 // helper function that sends and receives and decode the information from one neighboring (I'm writing in terms of East side, 'E')
 void LocalDLA::help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<Particle>& p_E){
 
@@ -240,8 +339,20 @@ void LocalDLA::help_migrate_one_side(int rank_E, vector<Particle>& c_E, vector<P
 
 
 
-void LocalDLA::balance(){
+void LocalDLA::balance(int num_active_core, int rank){
+    // receive buffer only for domain redecomposition
+    vector<Particle>* recv_cluster = new vector<Particle> ();
+    vector<Particle>* recv_particle = new vector<Particle> ();
 
+    // clear ghost
+    clear_ghost();
+
+    for (unsigned int i = 0; i < l; ++i)
+        balance_migrate(num_active_core, rank, recv_cluster, recv_particle);
+
+
+
+    // reconstruct ghost 
 }
 
 

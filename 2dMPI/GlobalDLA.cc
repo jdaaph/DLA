@@ -180,6 +180,7 @@ void GlobalDLA::domain_decompose(){
 // load balance and redecomposition
 void GlobalDLA::balance(){
     
+    
 }
 
 
