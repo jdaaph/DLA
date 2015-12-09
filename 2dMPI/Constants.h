@@ -16,7 +16,7 @@
 
 
 // Bound factor: if particle has a r > b.f. * rmax then it's discarded
-#define BOUND_FACTOR 3
+#define BOUND_FACTOR 2
 
 
 // Random Seed 

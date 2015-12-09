@@ -87,6 +87,8 @@ public:
 
     void test();
     void test_migration();
+    void test_balance();
+
     void balance();
     void finalize(){
         MPI::Finalize();

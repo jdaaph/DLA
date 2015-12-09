@@ -34,7 +34,17 @@ private:
 
     // random walk for particles and boundary checking + aggregation checking
     void random_walk();
+    
     std::vector<Particle>::iterator aggregation_check(std::vector<Particle>::iterator it);
+    
+    void help_migration_dispatch( std::vector<Particle>& orig_vec , std::vector<Particle>& p_E,  std::vector<Particle>& p_W,  std::vector<Particle>& p_N,  std::vector<Particle>& p_S);
+
+    void help_balance_migrate_one_side(int rank_E, std::vector<Particle>& c_E, std::vector<Particle>& p_E, std::vector<Particle>& recv_cluster, std::vector<Particle>& recv_particle);
+
+
+    void add(std::vector<Particle>& vec, Vec2D pos){
+        vec.push_back(Particle(pos));
+    }
 
 public:
     float rmax = 0;
@@ -68,7 +78,7 @@ public:
 
     // migrate is the communication process in which every processor have already get the new 
     void migrate(int num_active_core, int rank);
-    void balance_migrate(int num_active_core, int rank, std::vector<Particle> recv_cluster, std::vector<Particle> recv_particle);
+    void balance_migrate(int num_active_core, int rank, std::vector<Particle>& recv_cluster, std::vector<Particle>& recv_particle, bool first_pass);
 
     // spawn new particles to play with
     // spawn_rate is the probability of spawning at a fixed location given it's a feasible spawn region

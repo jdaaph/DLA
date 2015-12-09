@@ -143,9 +143,9 @@ void GlobalDLA::domain_decompose(){
 
     int size_o;
     if (alpha != 1)
-        size_o = floor((6 * domain_rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
+        size_o = floor((2 * BOUND_FACTOR * domain_rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
     else
-        size_o = 6 * domain_rmax / l;
+        size_o = 2 * BOUND_FACTOR * domain_rmax / l;
 
     Vec2D lower_o (-size_o/2, -size_o/2);
 
@@ -162,8 +162,8 @@ void GlobalDLA::domain_decompose(){
         }
         else{
             localDLA -> set_domain(domain.upper, domain.lower);
-            localDLA -> balance();
-        }
+            balance();
+            }
     }
 }
 
@@ -177,10 +177,9 @@ void GlobalDLA::domain_decompose(){
 
 
 
-// load balance and redecomposition
+// load balance and redecomposition wrapper
 void GlobalDLA::balance(){
-    
-    
+    localDLA -> balance(num_active_core, rank);
 }
 
 
@@ -298,7 +297,20 @@ void GlobalDLA::test_migration(){
 }
 
 
+// for debug the balance (domain redecompose) process
+void GlobalDLA::test_balance(){
+    add_seed_cluster();
 
+
+    balance();
+
+    MPI::COMM_WORLD.Barrier();
+
+    report_collective_cluster();
+
+    MPI::COMM_WORLD.Barrier();
+    finalize();    
+}
 
 
 

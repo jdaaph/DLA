@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.3.2/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = /usr/local/Cellar/cmake/3.3.2/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daich/GitHub/DLA/2dMPI
+CMAKE_SOURCE_DIR = /Users/daich/GitHub/DLA/2dMPI
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daich/GitHub/DLA/2dMPI/build
+CMAKE_BINARY_DIR = /Users/daich/GitHub/DLA/2dMPI/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/mytest.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/mytest.dir/flags.make
 
 CMakeFiles/mytest.dir/main.o: CMakeFiles/mytest.dir/flags.make
 CMakeFiles/mytest.dir/main.o: ../main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mytest.dir/main.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mytest.dir/main.o -c /home/daich/GitHub/DLA/2dMPI/main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mytest.dir/main.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mytest.dir/main.o -c /Users/daich/GitHub/DLA/2dMPI/main.cc
 
 CMakeFiles/mytest.dir/main.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/main.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/daich/GitHub/DLA/2dMPI/main.cc > CMakeFiles/mytest.dir/main.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/daich/GitHub/DLA/2dMPI/main.cc > CMakeFiles/mytest.dir/main.i
 
 CMakeFiles/mytest.dir/main.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/main.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/daich/GitHub/DLA/2dMPI/main.cc -o CMakeFiles/mytest.dir/main.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/daich/GitHub/DLA/2dMPI/main.cc -o CMakeFiles/mytest.dir/main.s
 
 CMakeFiles/mytest.dir/main.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/mytest.dir/main.o.provides.build: CMakeFiles/mytest.dir/main.o
 
 CMakeFiles/mytest.dir/GlobalDLA.o: CMakeFiles/mytest.dir/flags.make
 CMakeFiles/mytest.dir/GlobalDLA.o: ../GlobalDLA.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mytest.dir/GlobalDLA.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mytest.dir/GlobalDLA.o -c /home/daich/GitHub/DLA/2dMPI/GlobalDLA.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mytest.dir/GlobalDLA.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mytest.dir/GlobalDLA.o -c /Users/daich/GitHub/DLA/2dMPI/GlobalDLA.cc
 
 CMakeFiles/mytest.dir/GlobalDLA.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/GlobalDLA.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/daich/GitHub/DLA/2dMPI/GlobalDLA.cc > CMakeFiles/mytest.dir/GlobalDLA.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/daich/GitHub/DLA/2dMPI/GlobalDLA.cc > CMakeFiles/mytest.dir/GlobalDLA.i
 
 CMakeFiles/mytest.dir/GlobalDLA.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/GlobalDLA.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/daich/GitHub/DLA/2dMPI/GlobalDLA.cc -o CMakeFiles/mytest.dir/GlobalDLA.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/daich/GitHub/DLA/2dMPI/GlobalDLA.cc -o CMakeFiles/mytest.dir/GlobalDLA.s
 
 CMakeFiles/mytest.dir/GlobalDLA.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/mytest.dir/GlobalDLA.o.provides.build: CMakeFiles/mytest.dir/GlobalDL
 
 CMakeFiles/mytest.dir/LocalDLA.o: CMakeFiles/mytest.dir/flags.make
 CMakeFiles/mytest.dir/LocalDLA.o: ../LocalDLA.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/mytest.dir/LocalDLA.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mytest.dir/LocalDLA.o -c /home/daich/GitHub/DLA/2dMPI/LocalDLA.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/mytest.dir/LocalDLA.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mytest.dir/LocalDLA.o -c /Users/daich/GitHub/DLA/2dMPI/LocalDLA.cc
 
 CMakeFiles/mytest.dir/LocalDLA.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/LocalDLA.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/daich/GitHub/DLA/2dMPI/LocalDLA.cc > CMakeFiles/mytest.dir/LocalDLA.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/daich/GitHub/DLA/2dMPI/LocalDLA.cc > CMakeFiles/mytest.dir/LocalDLA.i
 
 CMakeFiles/mytest.dir/LocalDLA.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/LocalDLA.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/daich/GitHub/DLA/2dMPI/LocalDLA.cc -o CMakeFiles/mytest.dir/LocalDLA.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/daich/GitHub/DLA/2dMPI/LocalDLA.cc -o CMakeFiles/mytest.dir/LocalDLA.s
 
 CMakeFiles/mytest.dir/LocalDLA.o.requires:
 
@@ -142,10 +142,10 @@ mytest: CMakeFiles/mytest.dir/main.o
 mytest: CMakeFiles/mytest.dir/GlobalDLA.o
 mytest: CMakeFiles/mytest.dir/LocalDLA.o
 mytest: CMakeFiles/mytest.dir/build.make
-mytest: /usr/lib64/libmpi_cxx.so
-mytest: /usr/lib64/libmpi.so
+mytest: /usr/local/Cellar/open-mpi/1.10.0/lib/libmpi_cxx.dylib
+mytest: /usr/local/Cellar/open-mpi/1.10.0/lib/libmpi.dylib
 mytest: CMakeFiles/mytest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable mytest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/daich/GitHub/DLA/2dMPI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable mytest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mytest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -164,6 +164,6 @@ CMakeFiles/mytest.dir/clean:
 .PHONY : CMakeFiles/mytest.dir/clean
 
 CMakeFiles/mytest.dir/depend:
-	cd /home/daich/GitHub/DLA/2dMPI/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daich/GitHub/DLA/2dMPI /home/daich/GitHub/DLA/2dMPI /home/daich/GitHub/DLA/2dMPI/build /home/daich/GitHub/DLA/2dMPI/build /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/mytest.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/daich/GitHub/DLA/2dMPI/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/daich/GitHub/DLA/2dMPI /Users/daich/GitHub/DLA/2dMPI /Users/daich/GitHub/DLA/2dMPI/build /Users/daich/GitHub/DLA/2dMPI/build /Users/daich/GitHub/DLA/2dMPI/build/CMakeFiles/mytest.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/mytest.dir/depend
 
