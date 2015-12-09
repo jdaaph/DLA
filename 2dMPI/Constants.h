@@ -10,7 +10,7 @@
 
 
 // the decay rate of block size (short side)
-#define ALPHA 5
+#define ALPHA 1
 #define RANDOM_SEED_SPAWN 1608
 #define RANDOM_SEED_WALK 888
 

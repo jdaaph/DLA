@@ -143,7 +143,7 @@ void LocalDLA::migrate(int num_active_core, int rank){
     int rank_W, rank_E, rank_N, rank_S;
 
     // THIS can be optimized, we don't have to check for ghost for all clusters, we can only check the newly formed clusters, but I guess this ain't the bottleneck anyway
-    double time_i = MPI::Wtime();
+
 
     // cluster => push to neighbors to update ghost 
     for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
@@ -181,7 +181,7 @@ void LocalDLA::migrate(int num_active_core, int rank){
         // if any branch if triggered, this particle would be moved and iterator would be updated
         it ++;
     }
-    double time_f = MPI::Wtime();
+
 
 
     // Now check for neighbor existence and get rank
@@ -191,11 +191,12 @@ void LocalDLA::migrate(int num_active_core, int rank){
     rank_N = xy2rank( xy_current + Vec2D(0, +1), num_active_core);
     rank_S = xy2rank( xy_current + Vec2D(0, -1), num_active_core);
 
+    double time_i = MPI::Wtime();
     help_migrate_one_side (rank_E, c_E, p_E);
     help_migrate_one_side (rank_W, c_W, p_W);
     help_migrate_one_side (rank_N, c_N, p_N);
     help_migrate_one_side (rank_S, c_S, p_S);
-
+    double time_f = MPI::Wtime();
     mig_time += time_f - time_i;
 }
 
