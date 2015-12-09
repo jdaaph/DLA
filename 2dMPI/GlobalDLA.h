@@ -77,6 +77,7 @@ public:
     // spawn new particles to play with
     void spawn(float spawn_rate);
     void add_seed_cluster();
+    void add_seed_cluster(Vec2D pos);
     void activate_core();
 
     // load balance and redecomposition

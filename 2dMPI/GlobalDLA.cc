@@ -139,7 +139,7 @@ void GlobalDLA::domain_decompose(){
 
     sync_rmax();
 
-    float domain_rmax = fmax(100.0, rmax);
+    float domain_rmax = fmax(30.0, rmax);
 
     int size_o;
     if (alpha != 1)
@@ -239,6 +239,8 @@ void GlobalDLA::simulate(int timestep){
         localDLA -> update(num_active_core, rank);
         if (i % 300 == 0)
             spawn(0.01);
+        if (i % 2000 == 0)
+            domain_decompose();
 
         // MPI::COMM_WORLD.Barrier();
         // cout << "=========" << endl;
@@ -255,6 +257,16 @@ void GlobalDLA::add_seed_cluster(){
         localDLA -> add_cluster(Vec2D(0,0));
     }
 }
+
+
+void GlobalDLA::add_seed_cluster(Vec2D pos){
+    int l = floor(sqrt(p));
+    if (rank2xy(rank, num_active_core).x == (l-1)/2 &&  rank2xy(rank, num_active_core).y == (l-1)/2 ){
+        localDLA -> add_cluster(pos);
+    }
+}
+
+
 
 
 void GlobalDLA::test(){
@@ -299,14 +311,16 @@ void GlobalDLA::test_migration(){
 
 // for debug the balance (domain redecompose) process
 void GlobalDLA::test_balance(){
-    add_seed_cluster();
-
+    add_seed_cluster(Vec2D(-66,-67));
 
     balance();
 
+    cout << localDLA -> report_domain() << endl;
+
     MPI::COMM_WORLD.Barrier();
 
-    report_collective_cluster();
+    cout << "Rank: " << rank << "," << localDLA -> report_cluster() << endl;
+    // report_collective_cluster();
 
     MPI::COMM_WORLD.Barrier();
     finalize();    

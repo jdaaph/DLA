@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     GlobalDLA experiment = GlobalDLA();
     experiment.init(argc, argv);
     // experiment.test();
-    experiment.test_balance();
+    experiment.test();
 
     cout << "Biu! Done!" << endl;
 }
