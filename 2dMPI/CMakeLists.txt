@@ -7,6 +7,8 @@ set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
 set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
 include_directories(MPI_INCLUDE_PATH)
 
+# for greenfield's shitty mpi config
+# include_directories("/usr/local/packages/openmpi/openmpi-1.8.8/include")
 
 add_executable(mytest 	main.cc
 			GlobalDLA.cc

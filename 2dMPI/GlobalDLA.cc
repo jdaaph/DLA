@@ -237,11 +237,12 @@ void GlobalDLA::simulate(int timestep){
 
     for (unsigned int i = 0; i < timestep; ++i){
         localDLA -> update(num_active_core, rank);
-        if (i % 300 == 0)
-            spawn(0.01);
-        if (i % 2000 == 0)
-            domain_decompose();
-
+        if (i % 300 == 0){
+            spawn(SPAWN_RATE);
+	}
+	if (i % 1500 == 0){
+	        domain_decompose();
+	}
         // MPI::COMM_WORLD.Barrier();
         // cout << "=========" << endl;
         // report();

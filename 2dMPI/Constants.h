@@ -9,8 +9,10 @@
 #define GHOST_REGION 1
 
 
+#define SPAWN_RATE 0.1
+
 // the decay rate of block size (short side)
-#define ALPHA 1.5
+#define ALPHA 2
 #define RANDOM_SEED_SPAWN 1608
 #define RANDOM_SEED_WALK 888
 
@@ -19,13 +21,7 @@
 #define BOUND_FACTOR 2
 
 
-// Random Seed 
-
-
-
-
-
-#define TIME_STEP 3e5
+#define TIME_STEP 6e3
 
 
 #endif //__CONSTANTS__
