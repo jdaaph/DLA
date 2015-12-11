@@ -12,6 +12,8 @@
 #include <iostream>
 #include <string>
 #include <cstdlib> 
+#include <stdlib.h>
+
 
 using namespace std;
 
@@ -300,6 +302,10 @@ void GlobalDLA::test(){
     cout << "BIUBIUBIU" << endl;
     cout << "mig_time: " << localDLA -> mig_time << endl;
 
+    MPI::COMM_WORLD.Barrier();
+    analyse_global_com();
+
+
     // if (rank == 4 || rank == 0)
     //     report();
 
@@ -332,7 +338,73 @@ void GlobalDLA::test_balance(){
 }
 
 
+void GlobalDLA::analyse_global_com(){
+    COM local_com = localDLA -> analyse_local_com();
 
+
+    // gather everything to core-0
+    float* lst_x = nullptr;
+    float* lst_y = nullptr;
+    int* lst_cnt = nullptr;
+
+    if (rank == 0){
+        // lst_x =  malloc(sizeof(float) * num_active_core);
+        // lst_y =  malloc(sizeof(float) * num_active_core);
+        // lst_cnt =  malloc(sizeof(int) * num_active_core);
+        lst_x = new float[num_active_core];
+        lst_y = new float[num_active_core];
+        lst_cnt = new int[num_active_core];
+
+    }
+    
+    MPI::COMM_WORLD.Gather( &(local_com.x), 1, MPI::FLOAT, lst_x, 1, MPI::FLOAT, 0);
+    MPI::COMM_WORLD.Gather( &(local_com.y), 1, MPI::FLOAT, lst_y, 1, MPI::FLOAT, 0);
+    MPI::COMM_WORLD.Gather( &(local_com.cnt), 1, MPI::INT, lst_cnt, 1, MPI::INT, 0);
+
+    int total_cnt = 0;
+    float global_x = 0;
+    float global_y = 0;
+    
+    float global_com [2];
+
+    if (rank==0){
+        for (unsigned int i=0; i < num_active_core; ++ i){
+            total_cnt += lst_cnt[i];
+            global_x += lst_x[i] * lst_cnt[i];
+            global_y += lst_y[i] * lst_cnt[i];
+        }
+
+
+        global_com[0] = global_x / total_cnt;
+        global_com[1] = global_y / total_cnt;
+
+    }
+
+    MPI::COMM_WORLD.Bcast(global_com, 2, MPI::FLOAT, 0);
+    MPI::COMM_WORLD.Bcast(&total_cnt, 1, MPI::INT, 0);
+
+    cout << "Global Center of Mass: (" << global_com[0] << ", " << global_com[1] << ")" << endl;
+    cout << "Total Num of Cluster: " << total_cnt << endl;
+
+    MPI::COMM_WORLD.Barrier();
+
+    float local_r = localDLA -> local_radius_gyra(global_com[0], global_com[1]);
+    float* lst_r = nullptr;
+    float global_r;
+    if (rank == 0)
+        lst_r = new float [num_active_core];
+
+    MPI::COMM_WORLD.Gather( &local_r, 1, MPI::FLOAT, lst_r, 1, MPI::FLOAT, 0);
+
+    if (rank == 0){
+        for (unsigned int i=0; i < num_active_core; ++ i){
+            global_r += lst_r[i];
+        }
+        global_r = global_r / total_cnt;
+        cout << "Radius of Gyration is " << global_r << endl;
+    }   
+
+}
 
 
 

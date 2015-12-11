@@ -9,6 +9,18 @@
 
 using namespace std;
 
+struct COM{
+    float x;
+    float y;
+    int cnt;
+    inline COM(float _x, float _y, int _cnt){
+        x = _x;
+        y = _y;
+        cnt = _cnt;
+    }
+};
+
+
 
 /*
     Store local runtime information
@@ -46,6 +58,7 @@ private:
         vec.push_back(Particle(pos));
     }
 
+
 public:
     float rmax = 0;
     float mig_time = 0;
@@ -59,6 +72,9 @@ public:
         lower = min(corner1, corner2);
         upper = max(corner1, corner2);  
         }
+        
+    COM analyse_local_com();
+    float local_radius_gyra(float center_x, float center_y);
 
     float local_rmax(){
         return rmax;
@@ -105,6 +121,8 @@ public:
 };
 
 int* help_pickel( std::vector<Particle>& c_lst, std::vector<Particle>& p_lst);
+
+
 
 
 

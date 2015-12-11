@@ -106,6 +106,10 @@ inline int get_distance2(const Vec2D& a, const Vec2D& b){
     return ( (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
 }
 
+// get the distance between two vectors
+inline int get_distance(const Vec2D& a, const Vec2D& b){
+    return sqrt( (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
+}
 
 // get distance to the origin
 inline float get_r(const Vec2D& a){

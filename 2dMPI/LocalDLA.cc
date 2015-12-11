@@ -471,6 +471,32 @@ string LocalDLA::report_cluster(){
 }
 
 
+// com = center of mass
+COM LocalDLA::analyse_local_com(){
+    int cnt = 0;
+    Vec2D local_com (0,0);
+    for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
+        cnt += 1;
+        local_com += it -> pos;       
+    }
+    if (cnt != 0)
+        return COM( (float)local_com.x / cnt, (float)local_com.y / cnt, cnt);
+    else 
+        return COM (0.0, 0.0, 0);
+}
+
+
+float LocalDLA::local_radius_gyra(float center_x, float center_y){
+    float r = 0;
+    for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
+        r += sqrt((it->pos.x - center_x) * (it->pos.x - center_x) + (it->pos.y - center_y) * (it->pos.y - center_y));
+    }
+    return r;
+}
+
+
+
+
 
 
 

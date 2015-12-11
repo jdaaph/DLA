@@ -90,6 +90,8 @@ public:
     void test_migration();
     void test_balance();
 
+    void analyse_global_com();
+
     void balance();
     void finalize(){
         MPI::Finalize();
