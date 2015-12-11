@@ -1,6 +1,6 @@
-The system is: Linux - 3.17.8-gentoo-r1 - x86_64
+The system is: Darwin - 14.5.0 - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: /usr/bin/cc 
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
 Build flags: 
 Id flags: 
 
@@ -10,10 +10,10 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/3.3.1/CompilerIdC/a.out"
+The C compiler identification is AppleClang, found in "/Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/3.2.2/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: /usr/bin/c++ 
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
 Build flags: 
 Id flags: 
 
@@ -23,138 +23,103 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/3.3.1/CompilerIdCXX/a.out"
+The CXX compiler identification is AppleClang, found in "/Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/3.2.2/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_6cee2/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_6cee2.dir/build.make CMakeFiles/cmTC_6cee2.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6cee2.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_6cee2.dir/testCCompiler.c.o   -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_6cee2
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6cee2.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_6cee2.dir/testCCompiler.c.o  -o cmTC_6cee2 -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3750307271/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3750307271.dir/build.make CMakeFiles/cmTryCompileExec3750307271.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3750307271.dir/testCCompiler.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3750307271.dir/testCCompiler.c.o   -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec3750307271
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3750307271.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3750307271.dir/testCCompiler.c.o  -o cmTryCompileExec3750307271  
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_32c96/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_32c96.dir/build.make CMakeFiles/cmTC_32c96.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_32c96
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_32c96.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o  -o cmTC_32c96 -rdynamic  
-Using built-in specs.
-COLLECT_GCC=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3/gcc
-COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper
-Target: x86_64-pc-linux-gnu
-Configured with: /var/tmp/portage/sys-devel/gcc-4.9.3/work/gcc-4.9.3/configure --host=x86_64-pc-linux-gnu --build=x86_64-pc-linux-gnu --prefix=/usr --bindir=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3 --includedir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include --datadir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3 --mandir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/man --infodir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/info --with-gxx-include-dir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include/g++-v4 --with-python-dir=/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/python --enable-languages=c,c++,fortran --enable-obsolete --enable-secureplt --disable-werror --with-system-zlib --enable-nls --without-included-gettext --enable-checking=release --with-bugurl=https://bugs.gentoo.org/ --with-pkgversion='Gentoo 4.9.3 p1.3, pie-0.6.3' --enable-libstdcxx-time --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-multilib --with-multilib-list=m32,m64 --disable-altivec --disable-fixed-point --enable-targets=all --disable-libgcj --enable-libgomp --disable-libmudflap --disable-libssp --disable-libcilkrts --enable-lto --without-cloog --enable-libsanitizer
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3972696448/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3972696448.dir/build.make CMakeFiles/cmTryCompileExec3972696448.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec3972696448
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3972696448.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3972696448   
+Apple LLVM version 7.0.0 (clang-700.0.72)
+Target: x86_64-apple-darwin14.5.0
 Thread model: posix
-gcc version 4.9.3 (Gentoo 4.9.3 p1.3, pie-0.6.3) 
-COMPILER_PATH=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/bin/
-LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_32c96' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/collect2 -plugin /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqC1Loz.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_32c96 /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../.. CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crtn.o
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec3972696448 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-253.3
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_32c96/fast"]
-  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_32c96.dir/build.make CMakeFiles/cmTC_32c96.dir/build]
-  ignore line: [gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_32c96]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_32c96.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o  -o cmTC_32c96 -rdynamic  ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3/gcc]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper]
-  ignore line: [Target: x86_64-pc-linux-gnu]
-  ignore line: [Configured with: /var/tmp/portage/sys-devel/gcc-4.9.3/work/gcc-4.9.3/configure --host=x86_64-pc-linux-gnu --build=x86_64-pc-linux-gnu --prefix=/usr --bindir=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3 --includedir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include --datadir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3 --mandir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/man --infodir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/info --with-gxx-include-dir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include/g++-v4 --with-python-dir=/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/python --enable-languages=c,c++,fortran --enable-obsolete --enable-secureplt --disable-werror --with-system-zlib --enable-nls --without-included-gettext --enable-checking=release --with-bugurl=https://bugs.gentoo.org/ --with-pkgversion='Gentoo 4.9.3 p1.3, pie-0.6.3' --enable-libstdcxx-time --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-multilib --with-multilib-list=m32,m64 --disable-altivec --disable-fixed-point --enable-targets=all --disable-libgcj --enable-libgomp --disable-libmudflap --disable-libssp --disable-libcilkrts --enable-lto --without-cloog --enable-libsanitizer]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec3972696448/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3972696448.dir/build.make CMakeFiles/cmTryCompileExec3972696448.dir/build]
+  ignore line: [/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec3972696448]
+  ignore line: [/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3972696448.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3972696448   ]
+  ignore line: [Apple LLVM version 7.0.0 (clang-700.0.72)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.3 (Gentoo 4.9.3 p1.3, pie-0.6.3) ]
-  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/bin/]
-  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_32c96' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/collect2 -plugin /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqC1Loz.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_32c96 /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../.. CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crtn.o]
-    arg [/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/collect2] ==> ignore
-    arg [-plugin] ==> ignore
-    arg [/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/liblto_plugin.so] ==> ignore
-    arg [-plugin-opt=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccqC1Loz.res] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [--eh-frame-hdr] ==> ignore
-    arg [-m] ==> ignore
-    arg [elf_x86_64] ==> ignore
-    arg [-export-dynamic] ==> ignore
-    arg [-dynamic-linker] ==> ignore
-    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec3972696448 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_32c96] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crt1.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crti.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtbegin.o] ==> ignore
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3]
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64]
-    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
-    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib]
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../..] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../..]
-    arg [CMakeFiles/cmTC_32c96.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
-    arg [--as-needed] ==> ignore
-    arg [-lgcc_s] ==> lib [gcc_s]
-    arg [--no-as-needed] ==> ignore
-    arg [-lc] ==> lib [c]
-    arg [-lgcc] ==> lib [gcc]
-    arg [--as-needed] ==> ignore
-    arg [-lgcc_s] ==> lib [gcc_s]
-    arg [--no-as-needed] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtend.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crtn.o] ==> ignore
-  remove lib [gcc]
-  remove lib [gcc_s]
-  remove lib [gcc]
-  remove lib [gcc_s]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3] ==> [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64] ==> [/usr/lib64]
-  collapse library dir [/lib/../lib64] ==> [/lib64]
-  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib] ==> [/usr/x86_64-pc-linux-gnu/lib]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../..] ==> [/usr/lib]
-  implicit libs: [c]
-  implicit dirs: [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3;/usr/lib64;/lib64;/usr/x86_64-pc-linux-gnu/lib;/usr/lib]
-  implicit fwks: []
+    arg [cmTryCompileExec3972696448] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec3972696448.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  collapse lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
 
 
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_a0591/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_a0591.dir/build.make CMakeFiles/cmTC_a0591.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a0591.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_a0591.dir/feature_tests.c.o   -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_a0591
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0591.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_a0591.dir/feature_tests.c.o  -o cmTC_a0591 -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec320347182/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec320347182.dir/build.make CMakeFiles/cmTryCompileExec320347182.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec320347182.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c11 -o CMakeFiles/cmTryCompileExec320347182.dir/feature_tests.c.o   -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec320347182
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec320347182.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec320347182.dir/feature_tests.c.o  -o cmTryCompileExec320347182  
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -164,17 +129,16 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_ba806/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_ba806.dir/build.make CMakeFiles/cmTC_ba806.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ba806.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_ba806.dir/feature_tests.c.o   -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_ba806
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba806.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_ba806.dir/feature_tests.c.o  -o cmTC_ba806 -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec749038534/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec749038534.dir/build.make CMakeFiles/cmTryCompileExec749038534.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec749038534.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c99 -o CMakeFiles/cmTryCompileExec749038534.dir/feature_tests.c.o   -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec749038534
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec749038534.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec749038534.dir/feature_tests.c.o  -o cmTryCompileExec749038534  
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -184,17 +148,16 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_43e89/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_43e89.dir/build.make CMakeFiles/cmTC_43e89.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_43e89.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_43e89.dir/feature_tests.c.o   -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_43e89
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43e89.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_43e89.dir/feature_tests.c.o  -o cmTC_43e89 -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec4164207951/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec4164207951.dir/build.make CMakeFiles/cmTryCompileExec4164207951.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4164207951.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c90 -o CMakeFiles/cmTryCompileExec4164207951.dir/feature_tests.c.o   -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec4164207951
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4164207951.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec4164207951.dir/feature_tests.c.o  -o cmTryCompileExec4164207951  
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -202,136 +165,104 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_fed7a/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_fed7a.dir/build.make CMakeFiles/cmTC_fed7a.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_fed7a.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_fed7a.dir/testCXXCompiler.cxx.o -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_fed7a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fed7a.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_fed7a.dir/testCXXCompiler.cxx.o  -o cmTC_fed7a -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1413764430/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1413764430.dir/build.make CMakeFiles/cmTryCompileExec1413764430.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1413764430.dir/testCXXCompiler.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1413764430.dir/testCXXCompiler.cxx.o -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec1413764430
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1413764430.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1413764430.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec1413764430  
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_75f52/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_75f52.dir/build.make CMakeFiles/cmTC_75f52.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_75f52
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75f52.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_75f52 -rdynamic  
-Using built-in specs.
-COLLECT_GCC=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3/c++
-COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper
-Target: x86_64-pc-linux-gnu
-Configured with: /var/tmp/portage/sys-devel/gcc-4.9.3/work/gcc-4.9.3/configure --host=x86_64-pc-linux-gnu --build=x86_64-pc-linux-gnu --prefix=/usr --bindir=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3 --includedir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include --datadir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3 --mandir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/man --infodir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/info --with-gxx-include-dir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include/g++-v4 --with-python-dir=/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/python --enable-languages=c,c++,fortran --enable-obsolete --enable-secureplt --disable-werror --with-system-zlib --enable-nls --without-included-gettext --enable-checking=release --with-bugurl=https://bugs.gentoo.org/ --with-pkgversion='Gentoo 4.9.3 p1.3, pie-0.6.3' --enable-libstdcxx-time --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-multilib --with-multilib-list=m32,m64 --disable-altivec --disable-fixed-point --enable-targets=all --disable-libgcj --enable-libgomp --disable-libmudflap --disable-libssp --disable-libcilkrts --enable-lto --without-cloog --enable-libsanitizer
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3520275590/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3520275590.dir/build.make CMakeFiles/cmTryCompileExec3520275590.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec3520275590
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3520275590.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3520275590   
+Apple LLVM version 7.0.0 (clang-700.0.72)
+Target: x86_64-apple-darwin14.5.0
 Thread model: posix
-gcc version 4.9.3 (Gentoo 4.9.3 p1.3, pie-0.6.3) 
-COMPILER_PATH=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/bin/
-LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_75f52' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/collect2 -plugin /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuvun89.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_75f52 /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../.. CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crtn.o
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec3520275590 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-253.3
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_75f52/fast"]
-  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_75f52.dir/build.make CMakeFiles/cmTC_75f52.dir/build]
-  ignore line: [gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_75f52]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75f52.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_75f52 -rdynamic  ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3/c++]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper]
-  ignore line: [Target: x86_64-pc-linux-gnu]
-  ignore line: [Configured with: /var/tmp/portage/sys-devel/gcc-4.9.3/work/gcc-4.9.3/configure --host=x86_64-pc-linux-gnu --build=x86_64-pc-linux-gnu --prefix=/usr --bindir=/usr/x86_64-pc-linux-gnu/gcc-bin/4.9.3 --includedir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include --datadir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3 --mandir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/man --infodir=/usr/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/info --with-gxx-include-dir=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/include/g++-v4 --with-python-dir=/share/gcc-data/x86_64-pc-linux-gnu/4.9.3/python --enable-languages=c,c++,fortran --enable-obsolete --enable-secureplt --disable-werror --with-system-zlib --enable-nls --without-included-gettext --enable-checking=release --with-bugurl=https://bugs.gentoo.org/ --with-pkgversion='Gentoo 4.9.3 p1.3, pie-0.6.3' --enable-libstdcxx-time --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-multilib --with-multilib-list=m32,m64 --disable-altivec --disable-fixed-point --enable-targets=all --disable-libgcj --enable-libgomp --disable-libmudflap --disable-libssp --disable-libcilkrts --enable-lto --without-cloog --enable-libsanitizer]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec3520275590/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3520275590.dir/build.make CMakeFiles/cmTryCompileExec3520275590.dir/build]
+  ignore line: [/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec3520275590]
+  ignore line: [/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3520275590.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3520275590   ]
+  ignore line: [Apple LLVM version 7.0.0 (clang-700.0.72)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.3 (Gentoo 4.9.3 p1.3, pie-0.6.3) ]
-  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/libexec/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/bin/]
-  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_75f52' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/collect2 -plugin /usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuvun89.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_75f52 /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../.. CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crtn.o]
-    arg [/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/collect2] ==> ignore
-    arg [-plugin] ==> ignore
-    arg [/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/liblto_plugin.so] ==> ignore
-    arg [-plugin-opt=/usr/libexec/gcc/x86_64-pc-linux-gnu/4.9.3/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccuvun89.res] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [--eh-frame-hdr] ==> ignore
-    arg [-m] ==> ignore
-    arg [elf_x86_64] ==> ignore
-    arg [-export-dynamic] ==> ignore
-    arg [-dynamic-linker] ==> ignore
-    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec3520275590 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_75f52] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crt1.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crti.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtbegin.o] ==> ignore
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3]
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64]
-    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
-    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib]
-    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../..] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../..]
-    arg [CMakeFiles/cmTC_75f52.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
-    arg [-lstdc++] ==> lib [stdc++]
-    arg [-lm] ==> lib [m]
-    arg [-lgcc_s] ==> lib [gcc_s]
-    arg [-lgcc] ==> lib [gcc]
-    arg [-lc] ==> lib [c]
-    arg [-lgcc_s] ==> lib [gcc_s]
-    arg [-lgcc] ==> lib [gcc]
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/crtend.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64/crtn.o] ==> ignore
-  remove lib [gcc_s]
-  remove lib [gcc]
-  remove lib [gcc_s]
-  remove lib [gcc]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3] ==> [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../lib64] ==> [/usr/lib64]
-  collapse library dir [/lib/../lib64] ==> [/lib64]
-  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../../../x86_64-pc-linux-gnu/lib] ==> [/usr/x86_64-pc-linux-gnu/lib]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3/../../..] ==> [/usr/lib]
-  implicit libs: [stdc++;m;c]
-  implicit dirs: [/usr/lib/gcc/x86_64-pc-linux-gnu/4.9.3;/usr/lib64;/lib64;/usr/x86_64-pc-linux-gnu/lib;/usr/lib]
-  implicit fwks: []
+    arg [cmTryCompileExec3520275590] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec3520275590.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lc++] ==> lib [c++]
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  collapse lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [c++;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/lib/darwin/libclang_rt.osx.a]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
 
 
 
 
-Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Detecting CXX [-std=c++1y] compiler features compiled with the following output:
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_fe34e/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_fe34e.dir/build.make CMakeFiles/cmTC_fe34e.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_fe34e.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_fe34e.dir/feature_tests.cxx.o -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_fe34e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fe34e.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_fe34e.dir/feature_tests.cxx.o  -o cmTC_fe34e -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3533764584/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3533764584.dir/build.make CMakeFiles/cmTryCompileExec3533764584.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3533764584.dir/feature_tests.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++1y -o CMakeFiles/cmTryCompileExec3533764584.dir/feature_tests.cxx.o -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec3533764584
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3533764584.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3533764584.dir/feature_tests.cxx.o  -o cmTryCompileExec3533764584  
 
 
-    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
     Feature record: CXX_FEATURE:1cxx_alias_templates
     Feature record: CXX_FEATURE:1cxx_alignas
     Feature record: CXX_FEATURE:1cxx_alignof
@@ -371,7 +302,7 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
     Feature record: CXX_FEATURE:1cxx_range_for
     Feature record: CXX_FEATURE:1cxx_raw_string_literals
     Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
-    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
     Feature record: CXX_FEATURE:1cxx_return_type_deduction
     Feature record: CXX_FEATURE:1cxx_right_angle_brackets
     Feature record: CXX_FEATURE:1cxx_rvalue_references
@@ -379,29 +310,28 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
     Feature record: CXX_FEATURE:1cxx_static_assert
     Feature record: CXX_FEATURE:1cxx_strong_enums
     Feature record: CXX_FEATURE:1cxx_template_template_parameters
-    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_thread_local
     Feature record: CXX_FEATURE:1cxx_trailing_return_types
     Feature record: CXX_FEATURE:1cxx_unicode_literals
     Feature record: CXX_FEATURE:1cxx_uniform_initialization
     Feature record: CXX_FEATURE:1cxx_unrestricted_unions
     Feature record: CXX_FEATURE:1cxx_user_literals
-    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variable_templates
     Feature record: CXX_FEATURE:1cxx_variadic_macros
     Feature record: CXX_FEATURE:1cxx_variadic_templates
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_a5e60/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_a5e60.dir/build.make CMakeFiles/cmTC_a5e60.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a5e60.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_a5e60.dir/feature_tests.cxx.o -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_a5e60
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5e60.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_a5e60.dir/feature_tests.cxx.o  -o cmTC_a5e60 -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3078361529/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3078361529.dir/build.make CMakeFiles/cmTryCompileExec3078361529.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3078361529.dir/feature_tests.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTryCompileExec3078361529.dir/feature_tests.cxx.o -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec3078361529
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3078361529.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3078361529.dir/feature_tests.cxx.o  -o cmTryCompileExec3078361529  
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -452,7 +382,7 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
     Feature record: CXX_FEATURE:1cxx_static_assert
     Feature record: CXX_FEATURE:1cxx_strong_enums
     Feature record: CXX_FEATURE:1cxx_template_template_parameters
-    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_thread_local
     Feature record: CXX_FEATURE:1cxx_trailing_return_types
     Feature record: CXX_FEATURE:1cxx_unicode_literals
     Feature record: CXX_FEATURE:1cxx_uniform_initialization
@@ -464,17 +394,16 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_de6cc/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_de6cc.dir/build.make CMakeFiles/cmTC_de6cc.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_de6cc.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_de6cc.dir/feature_tests.cxx.o -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_de6cc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_de6cc.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_de6cc.dir/feature_tests.cxx.o  -o cmTC_de6cc -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3561033882/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3561033882.dir/build.make CMakeFiles/cmTryCompileExec3561033882.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3561033882.dir/feature_tests.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTryCompileExec3561033882.dir/feature_tests.cxx.o -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec3561033882
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3561033882.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3561033882.dir/feature_tests.cxx.o  -o cmTryCompileExec3561033882  
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -535,32 +464,30 @@ gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMake
     Feature record: CXX_FEATURE:0cxx_variadic_macros
     Feature record: CXX_FEATURE:0cxx_variadic_templates
 Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX11 succeded with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_9e27d/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_9e27d.dir/build.make CMakeFiles/cmTC_9e27d.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_9e27d.dir/src.cxx.o
-/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX11   -std=c++11 -o CMakeFiles/cmTC_9e27d.dir/src.cxx.o -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_9e27d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9e27d.dir/link.txt --verbose=1
-/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX11    CMakeFiles/cmTC_9e27d.dir/src.cxx.o  -o cmTC_9e27d -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1345192312/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1345192312.dir/build.make CMakeFiles/cmTryCompileExec1345192312.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1345192312.dir/src.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX11   -std=c++11 -o CMakeFiles/cmTryCompileExec1345192312.dir/src.cxx.o -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec1345192312
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1345192312.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX11 -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1345192312.dir/src.cxx.o  -o cmTryCompileExec1345192312  
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX0X succeded with the following output:
-Change Dir: /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_a0a13/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_a0a13.dir/build.make CMakeFiles/cmTC_a0a13.dir/build
-gmake[1]: Entering directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a0a13.dir/src.cxx.o
-/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX0X   -std=c++0x -o CMakeFiles/cmTC_a0a13.dir/src.cxx.o -c /home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_a0a13
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0a13.dir/link.txt --verbose=1
-/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX0X    CMakeFiles/cmTC_a0a13.dir/src.cxx.o  -o cmTC_a0a13 -rdynamic 
-gmake[1]: Leaving directory '/home/daich/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1843031284/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1843031284.dir/build.make CMakeFiles/cmTryCompileExec1843031284.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1843031284.dir/src.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX0X   -std=c++0x -o CMakeFiles/cmTryCompileExec1843031284.dir/src.cxx.o -c /Users/Chengyu/GitHub/DLA/2dMPI/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec1843031284
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1843031284.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX0X -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1843031284.dir/src.cxx.o  -o cmTryCompileExec1843031284  
 
 Source file was:
 int main() { return 0; }

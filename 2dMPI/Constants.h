@@ -21,7 +21,9 @@
 #define BOUND_FACTOR 2
 
 
-#define TIME_STEP 6e3
+#define TIME_STEP 6e4
+#define TERMINATE_RMAX 150
+#define BALANCE_INTERVAL_FACTOR 5
 
 
 #endif //__CONSTANTS__

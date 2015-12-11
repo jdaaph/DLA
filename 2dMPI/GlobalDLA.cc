@@ -239,10 +239,12 @@ void GlobalDLA::simulate(int timestep){
         localDLA -> update(num_active_core, rank);
         if (i % 300 == 0){
             spawn(SPAWN_RATE);
-	}
-	if (i % 1500 == 0){
-	        domain_decompose();
-	}
+            if (rmax >= TERMINATE_RMAX)
+                break;
+	    }
+        if (i % (300 * BALANCE_INTERVAL_FACTOR) == 0){
+    	        domain_decompose();
+        }
         // MPI::COMM_WORLD.Barrier();
         // cout << "=========" << endl;
         // report();
@@ -287,6 +289,8 @@ void GlobalDLA::test(){
         time_f = MPI::Wtime();
         cout << "=============\n" << "time = " << time_f - time_i << endl;
     }
+    MPI::COMM_WORLD.Barrier();
+
 
 
     report_collective_cluster();
