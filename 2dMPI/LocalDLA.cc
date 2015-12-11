@@ -491,6 +491,7 @@ float LocalDLA::local_radius_gyra(float center_x, float center_y){
     for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
         r += sqrt((it->pos.x - center_x) * (it->pos.x - center_x) + (it->pos.y - center_y) * (it->pos.y - center_y));
     }
+    cout << r << endl;
     return r;
 }
 

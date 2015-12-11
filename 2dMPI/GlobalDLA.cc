@@ -390,7 +390,7 @@ void GlobalDLA::analyse_global_com(){
 
     float local_r = localDLA -> local_radius_gyra(global_com[0], global_com[1]);
     float* lst_r = nullptr;
-    float global_r;
+    double global_r;
     if (rank == 0)
         lst_r = new float [num_active_core];
 
