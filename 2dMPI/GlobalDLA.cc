@@ -64,37 +64,62 @@ void GlobalDLA::activate_core(){
 // helper function for helper
 // lower_o is the x or y coordinate of lower corner of the central processor domain
 // we will return the lower coordinate for another processor with delta 
-static inline int help_lower(int del, int size, float alpha, int lower_o){
+static inline int help_lower(bool odd, int del, int size, float alpha, int lower_o){
     int tmp;
     int lower;
 
     if (del == 0) return lower_o;
     lower = lower_o;
 
-    if (del > 0){
-        tmp = size;
-        for (unsigned int i = 0; i < abs(del); ++i){
-            lower += floor(tmp) + 1;
-            tmp = floor(tmp * alpha);
+    if (odd){
+        // odd square number of cores
+        if (del > 0){
+            tmp = size;
+            for (unsigned int i = 0; i < abs(del); ++i){
+                lower += floor(tmp) + 1;
+                tmp = floor(tmp * alpha);
+            }
         }
-    }
-    else{
-        tmp = floor(size * alpha);
-        for (unsigned int i = 0; i < abs(del); ++i){
-            lower -= floor(tmp) + 1;
-            tmp = floor(tmp * alpha);
+        else{
+            tmp = floor(size * alpha);
+            for (unsigned int i = 0; i < abs(del); ++i){
+                lower -= floor(tmp) + 1;
+                tmp = floor(tmp * alpha);
+            }
         }
+    }else{
+        // even square number of cores
+        // del > 0 is the same here with odd case
+        if (del > 0){
+            tmp = size;
+            for (unsigned int i = 0; i < abs(del); ++i){
+                lower += floor(tmp) + 1;
+                tmp = floor(tmp * alpha);
+            }
+        }
+        // this part is different
+        else{
+            tmp = size;
+            for (unsigned int i = 0; i < abs(del); ++i){
+                lower -= floor(tmp) + 1;
+                tmp = floor(tmp * alpha);
+            }
+        }             
     }
     return lower;
 }
 
 
 // helper of helper, calculate processor domain size, (it's a square domain)
-static inline int help_size(int del, int size, float alpha){
+static inline int help_size(bool odd, int del, int size, float alpha){
     int local_size = size;
-    for (unsigned int i = 0; i < abs(del); ++i){
-        local_size = floor(local_size * alpha);
-    }
+    if (odd)
+        for (unsigned int i = 0; i < abs(del); ++i)
+            local_size = floor(local_size * alpha);
+    else
+        for (unsigned int i = 0; i < abs(del) - (del < 0); ++i)
+            local_size = floor(local_size * alpha);
+
     return local_size;
 }
 
@@ -104,20 +129,28 @@ static inline int help_size(int del, int size, float alpha){
 
 
 
-// also a helper
-static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o){
-    int del_x = xy.x - (l-1)/2;
-    int del_y = xy.y - (l-1)/2;
+// also a helper, xy is the current core's position in the grid
+static Domain domain_calculator(bool odd, float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o){
 
-    int lower_x = help_lower(del_x, size_o, alpha, lower_o.x);
-    int lower_y = help_lower(del_y, size_o, alpha, lower_o.y);
+    int del_x, del_y;
 
-    Vec2D lower( lower_x, lower_y);
+    if (odd){
+        del_x = xy.x - (l-1)/2;
+        del_y = xy.y - (l-1)/2;
+    }else{
+        del_x = xy.x - (l)/2;
+        del_y = xy.y - (l)/2;
+    }
+
+    int lower_x = help_lower(odd, del_x, size_o, alpha, lower_o.x);
+    int lower_y = help_lower(odd, del_y, size_o, alpha, lower_o.y);
+
+    Vec2D lower( lower_x, lower_y );
 
     Vec2D upper(0,0);
 
-    int local_size_x = help_size(del_x, size_o, alpha);
-    int local_size_y = help_size(del_y, size_o, alpha);
+    int local_size_x = help_size(odd, del_x, size_o, alpha);
+    int local_size_y = help_size(odd, del_y, size_o, alpha);
 
     upper = lower + Vec2D(local_size_x, local_size_y);
     Domain domain = {upper, lower};
@@ -144,16 +177,34 @@ void GlobalDLA::domain_decompose(){
     float domain_rmax = fmax(30.0, rmax);
 
     int size_o;
-    if (alpha != 1)
-        size_o = floor((2 * BOUND_FACTOR * domain_rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
-    else
-        size_o = 2 * BOUND_FACTOR * domain_rmax / l;
+    Vec2D lower_o (0,0);
+    bool odd = (num_active_core % 2 == 1);
 
-    Vec2D lower_o (-size_o/2, -size_o/2);
+    if (odd){
+        // odd number square, p
+        if (alpha != 1)
+            size_o = floor((2 * BOUND_FACTOR * domain_rmax) / (1 + 2 * alpha * (1-pow(alpha, (l-1)/2.0)) / (1-alpha) ) ) + 3;
+        else
+            size_o = 2 * BOUND_FACTOR * domain_rmax / l;
+        
+        lower_o = Vec2D(-size_o/2, -size_o/2);
+    }
+    else{
+        // even number square, p  
+        // domain_rmax = fmax (50.0, rmax);
+
+        if (alpha != 1)
+            size_o = floor((BOUND_FACTOR * domain_rmax) / ((1-pow(alpha, (l)/2.0)) / (1-alpha) ) ) + 3;
+        else
+            size_o = 2 * BOUND_FACTOR * domain_rmax / l;
+        
+        lower_o = Vec2D(0, 0);
+    }
+
 
     // for all node calculate their own domain and update their GlobalDLA settings and pass it on to LocalDLA
     if (active){
-        Domain domain = domain_calculator(alpha, xy, l, size_o, lower_o);
+        Domain domain = domain_calculator(odd, alpha, xy, l, size_o, lower_o);
 
         if (localDLA == nullptr){
             // create a local DLA
@@ -218,13 +269,15 @@ void GlobalDLA::report(){
 void GlobalDLA::report_collective_cluster(){
     string report = localDLA -> report_cluster();
     string report2 = localDLA -> report_particle();
+    string report3 = localDLA -> report_domain();
 
     // cout << "======== cluster ======== rank: " << rank << endl;
     // cout << report << endl;
     // cout << "======== particle ======== rank: " << rank << endl;
     // cout << report2 << endl;
 
-    cout << report ;
+    // cout << report ;
+    // cout << report3 << endl;
 
 
 }
@@ -245,7 +298,8 @@ void GlobalDLA::simulate(int timestep){
                 break;
 	    }
         if (i % (300 * BALANCE_INTERVAL_FACTOR) == 0){
-    	        domain_decompose();
+            // cout << localDLA -> report_domain() << endl;
+    	    domain_decompose();
         }
         // MPI::COMM_WORLD.Barrier();
         // cout << "=========" << endl;
@@ -276,11 +330,17 @@ void GlobalDLA::add_seed_cluster(Vec2D pos){
 
 void GlobalDLA::test(){
 
+
+
     add_seed_cluster();
     double time_i, time_f;
 
-    if (rank == 0)
+
+    if (rank == 0){
+        cout << "=========== Start of -np " << num_active_core << " ===========" << endl;
+        cout << "alpha = " << alpha << endl;
         time_i = MPI::Wtime();
+    }
 
     MPI::COMM_WORLD.Barrier();
 
@@ -299,7 +359,7 @@ void GlobalDLA::test(){
 
     MPI::COMM_WORLD.Barrier();
 
-    cout << "BIUBIUBIU" << endl;
+    // cout << "BIUBIUBIU" << endl;
     cout << "mig_time: " << localDLA -> mig_time << endl;
 
     MPI::COMM_WORLD.Barrier();
@@ -383,8 +443,8 @@ void GlobalDLA::analyse_global_com(){
     MPI::COMM_WORLD.Bcast(global_com, 2, MPI::FLOAT, 0);
     MPI::COMM_WORLD.Bcast(&total_cnt, 1, MPI::INT, 0);
 
-    cout << "Global Center of Mass: (" << global_com[0] << ", " << global_com[1] << ")" << endl;
-    cout << "Total Num of Cluster: " << total_cnt << endl;
+    // cout << "Global Center of Mass: (" << global_com[0] << ", " << global_com[1] << ")" << endl;
+    // cout << "Total Num of Cluster: " << total_cnt << endl;
 
     MPI::COMM_WORLD.Barrier();
 
@@ -401,7 +461,10 @@ void GlobalDLA::analyse_global_com(){
             global_r += lst_r[i];
         }
         global_r = global_r / total_cnt;
+        cout << "===========" << endl;
+        cout << "Rmax = " << rmax << ", N = " << total_cnt << endl;
         cout << "Radius of Gyration is " << global_r << endl;
+        cout << "=========== End of -np " << num_active_core << " ===========" << endl;
     }   
 
 }

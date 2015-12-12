@@ -425,7 +425,7 @@ void LocalDLA::spawn(float spawn_rate, int rmax, int spawn_rmin, int spawn_rmax)
         }
     }
 
-    cout << "rmax = " << rmax << ", num_trial: " << num_spawn << ", actual_num_spawn: " << actual_num_spawn << endl;
+    // cout << "rmax = " << rmax << ", num_trial: " << num_spawn << ", actual_num_spawn: " << actual_num_spawn << endl;
     add_particles(spawn_p_lst);
 
     // The garbage collection must be done!!!
@@ -491,7 +491,7 @@ float LocalDLA::local_radius_gyra(float center_x, float center_y){
     for (std::vector<Particle>::iterator it = cluster.begin() ; it != cluster.end(); ++it){
         r += sqrt((it->pos.x - center_x) * (it->pos.x - center_x) + (it->pos.y - center_y) * (it->pos.y - center_y));
     }
-    cout << r << endl;
+    // cout << r << endl;
     return r;
 }
 

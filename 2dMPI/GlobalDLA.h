@@ -105,9 +105,9 @@ struct Domain{
 };
 
 
-static inline int help_lower(int del, int size, float alpha, int lower_o);
-static inline int help_size(int del, int size, float alpha);
-static Domain domain_calculator(float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o);
+static inline int help_lower(bool odd, int del, int size, float alpha, int lower_o);
+static inline int help_size(bool odd, int del, int size, float alpha);
+static Domain domain_calculator(bool odd, float alpha, Vec2D xy, int l, int size_o, Vec2D lower_o);
 
 
 

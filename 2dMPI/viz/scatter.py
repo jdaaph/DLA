@@ -11,6 +11,8 @@ with open("d.txt") as infile:
     final = final.replace("(", "")
     final = final.replace(")", "\n")
     lst = final.split()
+
+    print (lst)
     
     data = map(parser, lst)
 
